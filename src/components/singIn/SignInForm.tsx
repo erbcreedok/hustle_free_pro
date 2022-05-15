@@ -1,14 +1,19 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { useForm, Controller,SubmitHandler  } from "react-hook-form";
-import { Button, FormControl, InputLabel, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
-import Checkbox from '@mui/material/Checkbox';
-import  { Checkb }  from "../custom/Checkbox";
+import {
+  Button,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
+import  { CustomCheckbox }  from "../custom/Checkbox";
 import { getFieldState } from "../../utils/getFieldState";
 import { styled } from '@mui/material/styles';
-import FilledInput from '@mui/material/FilledInput';
-import FormHelperText from '@mui/material/FormHelperText';
-import Input from '@mui/material/Input';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { CustomButton } from "../custom/Button";
+
 
 const SignInFormWrapper = styled('div')`
   form {
@@ -22,34 +27,38 @@ const SignInFormWrapper = styled('div')`
   form input, label, button {
     font-family: 'Raleway';
   }
+  .checkbox_text {
+    color: #BBBBBB;
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: 16px;
+  }
 `
 const CheckboxWrapper = styled('div')`
   justify-content: flex-start;
   padding: 14px 0;
 `
-const CustomCheckbox = styled('input')`
-  width: 20px;
-  height: 20px;
-  border: 1px solid #BBBBBB;
-  box-sizing: border-box;
-  border-radius: 5px;
-  :hover input ~ .checkmark {
-    background-color: #fff;
-  }
-`
 
-interface IFormInputs {
+
+type IFormInputs = {
   login: string,
   password: string,
   checkbox: boolean
 }
 
 const SignInForm = () => {
-  const { control, handleSubmit,register } = useForm<IFormInputs>();
-  const [checked, setChecked] = useState(false);
-  const handleCheckboxChange = (event: any) => {
-    setChecked(event.target.checked)
-  }
+  const [passwordShown, setPasswordShown] = useState(false);
+  const { control, handleSubmit, register } = useForm<IFormInputs>({
+    defaultValues: {
+      login: '',
+      password: '',
+      checkbox: false
+    }
+  });
+
+  const togglePasswordVisiblity = useCallback(() => {
+    setPasswordShown(passwordShown ? false : true);
+  }, [passwordShown]);
 
   const onSubmit: SubmitHandler<IFormInputs> = data => {
     console.log(data)
@@ -62,31 +71,36 @@ const SignInForm = () => {
       <Controller
         name="login"
         control={control}
-        rules={{
-          required: 'Поле обязательное',
-        }}
-          render={({ field, fieldState, formState }) => (
+        rules={{ required: true }}
+        render={({ field, fieldState, formState }) => (
 
-            <FormControl variant="standard">
-              <InputLabel
-                htmlFor="component-simple"
-                sx={{
+          <FormControl variant="standard">
+            <TextField
+              variant="standard"
+              id="component-simple"
+              label="Логин"
+              sx={{
+                "& .MuiFormLabel-root": {
                   fontWeight: '400',
-                  fontSize: '12px',
                   color: '#848484',
-                }}
-              >Логин</InputLabel>
-              <Input
-                id="component-simple"
-                {...register("login")}
-                {...field}
-                {...getFieldState({ fieldState, formState })}
-                sx={{
-                  fontWeight: '700',
-                  fontSize: '14px',
-                  color: '#272727',
-                }} />
-            </FormControl>
+                },
+                "& .MuiInput-input": {
+                  padding: '8px 0px 16px 0px',
+                  marginLeft: '10px'
+                }
+              }}
+              inputProps={{
+                sx: {
+                fontWeight: 700,
+                fontSize: '14px',
+                color: '#272727',
+                }
+              }}
+              {...getFieldState({ fieldState, formState })}
+              {...register("login")}
+              {...field}
+            />
+          </FormControl>
 
           )}
         />
@@ -95,21 +109,52 @@ const SignInForm = () => {
         name="password"
         control={control}
           render={({ field, fieldState, formState }) => (
-          <FormControl variant="standard">
-              <InputLabel
-                htmlFor="component-simple"
+          <FormControl variant="standard" sx={{marginTop: '18px'}}>
+              <TextField
+                variant="standard"
+                id="standard-adornment-password"
+                label="Пароль"
                 sx={{
-                  fontWeight: '400',
-                  fontSize: '12px',
-                  color: '#848484',
-
+                  "& .MuiFormLabel-root": {
+                    fontWeight: '400',
+                    fontSize: '16px',
+                    color: '#848484',
+                  },
+                  "& .MuiInput-input": {
+                    padding: '8px 0px 16px 0px',
+                    marginLeft: '10px'
+                  }
                 }}
-              >Пароль</InputLabel>
-              <Input
-                id="component-simple"
+                type={passwordShown ? "text" : "password"}
                 {...register("password")}
                 {...field}
                 {...getFieldState({ fieldState, formState })}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={togglePasswordVisiblity}
+                        onMouseDown={togglePasswordVisiblity}
+                        sx={{
+                          paddingBottom: '12px'
+                        }}
+                      >
+                        {passwordShown ?
+                        <VisibilityOff
+                          sx={{
+                            fontSize: '1.2rem'
+                          }}
+                          />
+                          : <Visibility
+                          sx={{
+                            fontSize: '1.2rem'
+                          }}
+                        />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
               />
           </FormControl>
         )}
@@ -119,43 +164,27 @@ const SignInForm = () => {
         name="checkbox"
         control={control}
           render={({ field, fieldState, formState }) => (
-          <CheckboxWrapper>
-            <Checkbox
-              {...register("checkbox")}
-              {...field}
-              {...getFieldState({ fieldState, formState })}
-              sx={{
-                 "& .MuiSvgIcon-root": {
-                  // border: '1px solid #BBBBBB',
-                  // boxSizing: 'border-box',
-                  // borderRadius: '5px',
-                },
-                padding: '0px',
-              }}
+            <CheckboxWrapper>
+              <CustomCheckbox
+                checked={field.value}
+                onChange={field.onChange}
+              label={
+                <span className="checkbox_text">Запомнить меня</span>
+              }
             />
           </CheckboxWrapper>
         )}
-      />
-        <Button
-          type="submit"
-          sx={{
-            maxWidth: '303px',
-            height: '54px',
-            background: 'linear-gradient(69.51deg, #3E83E1 0%, #7B3EED 100%)',
-            boxShadow: '0px 0px 30px rgba(0, 0, 0, 0.03)',
-            border: '0px',
-            borderRadius: '10px',
-            fontWeight: '700',
-            fontSize: '14px',
-            color: '#FFFFFF',
-            cursor: 'pointer',
-            textTransform: 'capitalize',
-          }}
-        >Войти</Button>
+        />
+          <CustomButton
+              width={'100%'}
+              height={'54px'}
+              text={'Войти'}
+              backColor={
+                'linear-gradient(69.51deg, #3E83E1 0%, #7B3EED 100%)'
+              }
+              position={'center'}
+            />
       </form>
-      <Checkb 
-        // onChange={handleCheckboxChange}
-      />
     </SignInFormWrapper>
   )
 }

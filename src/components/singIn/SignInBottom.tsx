@@ -5,7 +5,8 @@ const BottomWrapper = styled('div')`
   font-family: 'Raleway';
   text-align: center;
 `
-const BottomText1 = styled('p')`
+const BottomText1 = styled('a')`
+  display: block;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
@@ -21,10 +22,9 @@ const BottomText2 = styled('p')`
   color: #848484;
 `
 const SignInBottom = () => {
-
   return (
     <BottomWrapper>
-      <BottomText1>Политика конфеденциальности</BottomText1>
+      <BottomText1 href='#'>Политика конфеденциальности</BottomText1>
       <BottomText2>Все права защищены © 2021</BottomText2>
     </BottomWrapper>
   )

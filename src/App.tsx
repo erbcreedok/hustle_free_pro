@@ -50,7 +50,7 @@ const AddResult = lazy(
 
 function App() {
 	return (
-		<Router basename="hustle_free_pro">
+		<Router basename="/hustle_free_pro">
 			<main>
 				<Suspense fallback={<div>Loading...</div>}>
 					<Routes>

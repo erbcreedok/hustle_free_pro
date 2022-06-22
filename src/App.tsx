@@ -1,5 +1,5 @@
 import {
-	HashRouter as Router,
+	BrowserRouter as Router,
 	Routes,
 	Route,
 	Navigate,
@@ -50,7 +50,7 @@ const AddResult = lazy(
 
 function App() {
 	return (
-		<Router basename="/">
+		<Router basename="hustle_free_pro">
 			<main>
 				<Suspense fallback={<div>Loading...</div>}>
 					<Routes>

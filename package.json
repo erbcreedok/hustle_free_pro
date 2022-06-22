@@ -1,7 +1,7 @@
 {
 	"name": "hustle-free",
 	"version": "0.1.0",
-	"homepage": "https://ula00001.github.io/hustle_free_pro",
+	"homepage": "https://ula00001.github.io/hustle_free_pro/",
 	"private": true,
 	"dependencies": {
 		"@emotion/react": "^11.9.0",

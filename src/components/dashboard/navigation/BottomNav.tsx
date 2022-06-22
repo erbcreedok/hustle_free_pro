@@ -1,117 +1,112 @@
-import {useState, Fragment, SyntheticEvent} from 'react';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FolderIcon from '@mui/icons-material/Folder';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { styled } from '@mui/material/styles';
-
-import {HomeIcon, ChartIcon, CalendarIcon, ShopIcon, ProfileIcon} from '../../../images/icons/dashboard/icons';
-// import ChartIcon from '../../../images/icons/dashboard/chart.svg';
-// import CalendarIcon from '../../../images/icons/dashboard/calendar.svg';
-// import ShopIcon from '../../../images/icons/dashboard/shop.svg';
-// import ProfileIcon from '../../../images/icons/dashboard/profile.svg';
+import { useState, Fragment, SyntheticEvent, ReactElement } from "react";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import { styled } from "@mui/material/styles";
+import { ReactComponent as HomeIcon } from "../../../images/icons/dashboard/home.svg";
+import { ReactComponent as ChartIcon } from "../../../images/icons/dashboard/chart.svg";
+import { ReactComponent as CalendarIcon } from "../../../images/icons/dashboard/calendar.svg";
+import { ReactComponent as ShopIcon } from "../../../images/icons/dashboard/shop.svg";
+import { ReactComponent as ProfileIcon } from "../../../images/icons/dashboard/profile.svg";
+import { Routes, Route, Link, Outlet, NavLink } from "react-router-dom";
 
 type ItemProps = {
-  name: string
-}
+	name: string;
+	value: string;
+	icon?: ReactElement;
+};
+
+const Icon = styled("svg")`
+	margin-bottom: 4px;
+`;
 
 const menuData: ItemProps[] = [
-  {
-    name: 'Главная',
-  },
-  {
-    name: 'Активность'
-  },
-  {
-    name: 'Расписание'
-  },
-  {
-    name: 'Магазин'
-  },
-  {
-    name: 'Профиль'
-  },
-]
-
-const Icon = styled('img')`
-  margin-bottom: 4px;
-`
+	{
+		name: "home",
+		value: "Главная",
+		icon: <Icon as={HomeIcon} />,
+	},
+	{
+		name: "activity",
+		value: "Активность",
+		icon: <Icon as={ChartIcon} />,
+	},
+	{
+		name: "timetable",
+		value: "Расписание",
+		icon: <Icon as={CalendarIcon} />,
+	},
+	{
+		name: "shop",
+		value: "Магазин",
+		icon: <Icon as={ShopIcon} />,
+	},
+	{
+		name: "profile",
+		value: "Профиль",
+		icon: <Icon as={ProfileIcon} />,
+	},
+];
 
 export default function BottomNav() {
-  const [value, setValue] = useState('home');
+	const [value, setValue] = useState("home");
 
-  const handleChange = (event: SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+	const handleChange = (event: SyntheticEvent, newValue: string) => {
+		setValue(newValue);
+	};
 
-  return (
-    <BottomNavigation
-      showLabels
-      sx={{
-        width: '100%',
-        position: "fixed",
-        bottom: 0,
-        zIndex: 1000,
-        padding: '0px 16px',
-        "@media (min-width: 769px)": {
-          display: "none",
-        },
-        "& .MuiBottomNavigationAction-label": {
-          fontFamily: 'Raleway',
-          fontSize: '10px',
-          fontWeight: 400,
-          lineHeight: '12px',
-          marginTop: '4px'
-        },
-        "& .MuiBottomNavigationAction-label.Mui-selected": {
-          color: '#6D4EEA',
-        }
-      }}
-      value={value}
-      onChange={handleChange}
-    >
-      {
-        menuData.map((item) => (
-          item.name === 'Главная' ?
-            <BottomNavigationAction
-              key={Math.random()}
-              label="Главная"
-              value="home"
-              icon={<HomeIcon fill={value === 'home' ?'#6D4EEA':'#848484'}/>}
-            />
-            : item.name === 'Активность' ?
-              <BottomNavigationAction
-                key={Math.random()}
-                label="Активность"
-                value="chart"
-                icon={<ChartIcon fill={value === 'chart' ?'#6D4EEA':'#848484'} />}
-              />
-              : item.name === 'Расписание' ?
-                <BottomNavigationAction
-                  key={Math.random()}
-                  label="Расписание"
-                  value="calendar"
-                  icon={<CalendarIcon fill={value === 'calendar' ?'#6D4EEA':'#848484'} />}
-                />
-                : item.name === 'Магазин' ?
-                  <BottomNavigationAction
-                    key={Math.random()}
-                    label="Магазин"
-                    value="shop"
-                    icon={<ShopIcon fill={value === 'shop' ?'#6D4EEA':'#848484'} />}
-                  />
-                  : item.name === 'Профиль' ?
-                    <BottomNavigationAction
-                      key={Math.random()}
-                      label="Профиль"
-                      value="profile"
-                      icon={<ProfileIcon fill={value === 'profile' ?'#6D4EEA':'#848484'} />}
-                    />
-            : null
-        ))
-      }
-    </BottomNavigation>
-  );
+	return (
+		<BottomNavigation
+			showLabels
+			sx={{
+				width: "100%",
+				position: "fixed",
+				bottom: 0,
+				zIndex: 1000,
+				padding: "0px 16px",
+				"@media (min-width: 769px)": {
+					display: "none",
+				},
+				"&.MuiBottomNavigation-root .MuiButtonBase-root": {
+					minWidth: "unset",
+				},
+				"&.MuiBottomNavigation-root a": {
+					textDecoration: "unset",
+				},
+				"&.MuiBottomNavigation-root .active button, &.MuiBottomNavigation-root .active span":
+					{
+						color: "#6D4EEA",
+					},
+				"& .MuiBottomNavigationAction-label": {
+					fontFamily: "Raleway",
+					fontSize: "10px",
+					fontWeight: 400,
+					lineHeight: "12px",
+					opacity: "unset",
+					marginTop: "4px",
+					color: "#848484",
+				},
+				"& .MuiBottomNavigationAction-label.Mui-selected": {
+					color: "#6D4EEA",
+				},
+			}}
+			value={value}
+			onChange={handleChange}
+		>
+			{menuData.map((item) => (
+				<NavLink
+					style={({ isActive }) =>
+						isActive ? { color: "#6D4EEA" } : {}
+					}
+					to={item.name}
+				>
+					<BottomNavigationAction
+						key={Math.random()}
+						label={item.value}
+						value={item.name}
+						icon={item.icon}
+					/>
+				</NavLink>
+			))}
+		</BottomNavigation>
+	);
 }

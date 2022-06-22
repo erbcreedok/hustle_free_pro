@@ -1,67 +1,65 @@
 import { FC, ReactElement, useState, useCallback, useEffect } from "react";
-import Container from "@mui/material/Container";
+import { Container, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import UserCardImage from "../../../../images/GreetingCard/user_card_image.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { useRef } from "react";
 import {
 	MiniCardWrapper,
 	MiniCardImage,
 	MiniCardTextWrapper,
 	MiniCardText,
 } from "../../../custom/cards/MiniCard";
+import { Routes, Route, Link, Outlet } from "react-router-dom";
 
-type NewsTextProp = {
-	date: string; // ?????????????????
-	text: string; // ????????????
+type PartnersTextProp = {
+	text: string;
 };
 
-const newsData: NewsTextProp[] = [
+const partnersData: PartnersTextProp[] = [
 	{
-		date: "24.01.2021",
-		text: "Вы пропустили тренировку, не забудьте посетить ее завтра",
+		text: "Скидка 20% на продукты питания от Degreen.kz.",
 	},
 	{
-		date: "24.01.2021",
-		text: "Вы пропустили тренировку, не забудьте посетить ее завтра",
+		text: "Скидка 20% на продукты питания от Degreen.kz.",
 	},
 	{
-		date: "24.01.2021",
-		text: "Вы пропустили тренировку, не забудьте посетить ее завтра",
+		text: "Скидка 20% на продукты питания от Degreen.kz.",
+	},
+	{
+		text: "Скидка 20% на продукты питания от Degreen.kz.",
 	},
 ];
 
-const NewsWrapper = styled("div")`
-	box-sizing: border-box;
-	max-width: 343px;
+const PartnersWrapper = styled("div")`
+	/* width: 343px; */
 	display: flex;
 	flex-direction: column;
 `;
-const NewsTitleWrapper = styled("div")`
+const PartnersTitleWrapper = styled("div")`
 	display: flex;
 	justify-content: space-between;
 `;
-const NewsTitle = styled("h3")`
+const PartnersTitle = styled("h3")`
 	margin: 0 0 14px 0;
 	font-weight: 700;
 	font-size: 18px;
 	line-height: 21px;
 	color: #000000;
 `;
-const AllNewsWrapper = styled("div")`
+const AllPartnersWrapper = styled("div")`
 	a {
-		text-decoration: none;
 		display: flex;
 		align-items: center;
-		text-decoration: underline;
 	}
 `;
-const Text = styled("div")`
+const AllPartnersText = styled("div")`
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 14px;
+	text-decoration-line: underline;
 	color: #2f80ed;
 `;
 
@@ -89,16 +87,7 @@ const Card = ({ item, index }: CardProps) => {
 				height={"71px"}
 				border_radius={"10px"}
 			/>
-			<MiniCardTextWrapper margin={"0 0 0 10px"}>
-				<MiniCardText
-					fontWeight={400}
-					fontSize={"12px"}
-					lineheight={"14px"}
-					color={"#848484"}
-					margin={"0 0 4px 0"}
-				>
-					{item.date}
-				</MiniCardText>
+			<MiniCardTextWrapper margin={"0 2px 0 10px"}>
 				<MiniCardText
 					fontWeight={400}
 					fontSize={"14px"}
@@ -106,14 +95,14 @@ const Card = ({ item, index }: CardProps) => {
 					color={"#272727"}
 				>
 					<Link
-						to={`news/${index}`}
+						to={`partners/${index}`}
 						style={{ textDecoration: "none", color: "inherit" }}
 					>
 						{item.text}
 					</Link>
 				</MiniCardText>
 			</MiniCardTextWrapper>
-			<Link to={`news/${index}`}>
+			<Link to={`partners/${index}`}>
 				<ArrowForwardIosIcon
 					sx={{
 						color: "#848484",
@@ -126,20 +115,14 @@ const Card = ({ item, index }: CardProps) => {
 	);
 };
 
-const News = () => {
+const Partners = () => {
 	return (
-		<NewsWrapper>
-			<NewsTitleWrapper>
-				<NewsTitle>Новости</NewsTitle>
-				<AllNewsWrapper>
-					<Link
-						to="news"
-						style={{
-							color: "inherit",
-							textDecorationColor: "#2F80ED",
-						}}
-					>
-						<Text>Посмотреть все</Text>
+		<PartnersWrapper>
+			<PartnersTitleWrapper>
+				<PartnersTitle>Наши партнеры</PartnersTitle>
+				<AllPartnersWrapper>
+					<Link to="partners">
+						<AllPartnersText>Посмотреть все</AllPartnersText>
 						<ArrowForwardIcon
 							sx={{
 								width: "20px",
@@ -148,13 +131,18 @@ const News = () => {
 							}}
 						/>
 					</Link>
-				</AllNewsWrapper>
-			</NewsTitleWrapper>
-			{(newsData as NewsTextProp[]).map((item, index) => (
-				<Card item={item} index={index} key={item.text + index} />
-			))}
-		</NewsWrapper>
+				</AllPartnersWrapper>
+			</PartnersTitleWrapper>
+
+			<Grid container spacing={2} columns={12}>
+				{(partnersData as PartnersTextProp[]).map((item, index) => (
+					<Grid item xs={12} md={6} lg={6} key={index + item.text}>
+						{<Card item={item} index={index} />}
+					</Grid>
+				))}
+			</Grid>
+		</PartnersWrapper>
 	);
 };
 
-export default News;
+export default Partners;

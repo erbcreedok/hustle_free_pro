@@ -1,21 +1,26 @@
 import { FC, useState, useCallback, useEffect } from "react";
 import Container from "@mui/material/Container";
-import { styled } from "@mui/material/styles";
+// import { styled } from '@mui/material/styles';
 import { Grid } from "@mui/material";
+import { Box } from "../../custom/box";
 
-import UserGreetingsCard from "../../components/dashboard/home/userInfo/UserGreetingsCard";
-import Contacts from "../../components/dashboard/home/userInfo/Contacts";
-import Notification from "../../components/dashboard/home/notification/Notification";
-import News from "../../components/dashboard/home/news/News";
+import UserGreetingsCard from "./userInfo/UserGreetingsCard";
+import Contacts from "./userInfo/Contacts";
+import Notification from "./notification/Notification";
+import News from "./news/News";
 
-const DashGreetingWrapper = styled("div")``;
-const DashGreetingInfoSection = styled("div")``;
-const DashNotifySection = styled("div")``;
-const DashNewsSection = styled("div")``;
+// const DashGreetingWrapper = styled('div')`
+// `
+// const DashGreetingInfoSection = styled('div')`
+// `
+// const DashNotifySection = styled('div')`
+// `
+// const DashNewsSection = styled('div')`
+// `
 
 const HomeIndex = () => {
 	return (
-		<DashGreetingWrapper sx={{ marginBottom: "70px" }}>
+		<Box sx={{ marginBottom: "70px" }}>
 			<Grid container spacing={2} columns={12}>
 				<Grid
 					container
@@ -25,10 +30,10 @@ const HomeIndex = () => {
 					lg={4}
 					justifyContent="center"
 				>
-					<DashGreetingInfoSection>
+					<Box>
 						<UserGreetingsCard />
 						<Contacts />
-					</DashGreetingInfoSection>
+					</Box>
 				</Grid>
 
 				<Grid
@@ -48,9 +53,9 @@ const HomeIndex = () => {
 						lg={6}
 						justifyContent="center"
 					>
-						<DashNotifySection>
+						<Box>
 							<Notification />
-						</DashNotifySection>
+						</Box>
 					</Grid>
 
 					<Grid
@@ -61,13 +66,13 @@ const HomeIndex = () => {
 						lg={6}
 						justifyContent="center"
 					>
-						<DashNewsSection>
+						<Box>
 							<News />
-						</DashNewsSection>
+						</Box>
 					</Grid>
 				</Grid>
 			</Grid>
-		</DashGreetingWrapper>
+		</Box>
 	);
 };
 

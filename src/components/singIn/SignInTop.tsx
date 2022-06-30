@@ -1,4 +1,3 @@
-import { styled } from "@mui/material/styles";
 import useBreakpoint from "use-breakpoint";
 import { Typography } from "@mui/material";
 import { Wrapper } from "../custom/defaultStyles";

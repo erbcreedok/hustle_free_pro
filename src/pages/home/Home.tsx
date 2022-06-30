@@ -20,7 +20,7 @@ const HomeIndex = () => {
 					container
 					item
 					sm={12}
-					md={7}
+					md={6}
 					lg={4}
 					justifyContent="center"
 				>
@@ -35,7 +35,7 @@ const HomeIndex = () => {
 					spacing={2}
 					item
 					sm={12}
-					md={5}
+					md={6}
 					lg={8}
 					justifyContent="center"
 				>

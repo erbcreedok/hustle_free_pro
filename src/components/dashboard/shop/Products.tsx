@@ -42,7 +42,6 @@ const Card = ({ item, index }: CardProps) => {
 			display={"flex"}
 			flexDirection={"column"}
 			justifyContent={"center"}
-			// width={"209px"}
 			height={"282px"}
 			bgcolor={"#FFFFFF"}
 			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
@@ -55,7 +54,7 @@ const Card = ({ item, index }: CardProps) => {
 				<MediumCardText
 					fontWeight={400}
 					fontSize={"14px"}
-					lineheight={"16px"}
+					lineHeight={"16px"}
 					color={"#272727"}
 					margin={"16px 0"}
 				>
@@ -69,7 +68,7 @@ const Card = ({ item, index }: CardProps) => {
 				<MediumCardText
 					fontWeight={700}
 					fontSize={"18px"}
-					lineheight={"21px"}
+					lineHeight={"21px"}
 					color={"#272727"}
 				>{`${item.text2} тнг`}</MediumCardText>
 			</MediumCardTextWrapper>

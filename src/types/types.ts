@@ -47,3 +47,14 @@ export type NavProps = {
 export type ProfileInfoData = {
 	data?: TextProps[];
 };
+
+// Sidebar data types
+export type SidebarTypes = {
+	icon: string;
+	id: number;
+	name: string;
+	value: string;
+};
+export type IconMapTypes = {
+	[key: string]: ReactElement | any;
+};

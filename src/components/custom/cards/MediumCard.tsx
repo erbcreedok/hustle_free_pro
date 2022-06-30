@@ -35,24 +35,7 @@ export const MediumCardImage: FC<MediumCardImageProps> = ({
 };
 
 // Text Wrapper
-export const MediumCardTextWrapper = styled("div")``;
+export const MediumCardTextWrapper = styled(Box)``;
 
 // Top Text
-type MediumCardTextProps = {
-	fontWeight?: number;
-	fontSize?: string;
-	lineheight?: string;
-	color?: string;
-	margin?: string;
-};
-export const MediumCardText = styled("span")<MediumCardTextProps>`
-	font-weight: ${(props) => props.fontWeight};
-	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineheight};
-	color: ${(props) => props.color};
-	margin: ${(props) => props.margin};
-	display: block;
-	a:hover {
-		text-decoration: underline !important;
-	}
-`;
+export const MediumCardText = styled(Typography)``;

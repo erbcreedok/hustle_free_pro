@@ -45,13 +45,12 @@ const MiniCard = ({ item, index }: CardProps) => {
 	return (
 		<MiniCardWrapper
 			display={"flex"}
-			justify_content={"center"}
-			width={"343px"}
-			background={"#FFFFFF"}
-			box_shadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
-			border_radius={"10px"}
+			justifyContent={"center"}
+			bgcolor={"#FFFFFF"}
+			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
+			borderRadius={"10px"}
 			padding={"8px 10px"}
-			align_items={"center"}
+			alignItems={"center"}
 			margin={"0 0 14px 0"}
 			key={index}
 		>
@@ -64,7 +63,7 @@ const MiniCard = ({ item, index }: CardProps) => {
 				<MiniCardText
 					fontWeight={400}
 					fontSize={"14px"}
-					lineheight={"16px"}
+					lineHeight={"16px"}
 					color={"#272727"}
 				>
 					<Link
@@ -106,7 +105,7 @@ const MeduimCard = ({ item, index }: CardProps) => {
 				<MediumCardText
 					fontWeight={400}
 					fontSize={"14px"}
-					lineheight={"16px"}
+					lineHeight={"16px"}
 					color={"#272727"}
 					margin={"12px 0 0 0"}
 				>
@@ -137,7 +136,7 @@ const AllPartners: FC<DataProps> = () => {
 					fontSize={"18px"}
 					lineHeight={"21px"}
 					color={"#272727"}
-					margin={"34px"}
+					margin={"34px 0"}
 				>
 					Партнеры
 				</Title>

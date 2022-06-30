@@ -11,6 +11,9 @@ import { Link } from "react-router-dom";
 import { ShowAllButton } from "../../../custom/ShowAllButton";
 import { TextProps, CardProps, DataProps } from "../../../../types/types";
 import { Wrapper, TitleWrapper, Title } from "../../../custom/defaultStyles";
+import useBreakpoint from "use-breakpoint";
+
+const BREAKPOINTS = { xs: 0, sm: 768, mid: 900, lg: 1200 };
 
 const data: TextProps[] = [
 	{
@@ -31,13 +34,13 @@ const Card = ({ item, index }: CardProps) => {
 	return (
 		<MiniCardWrapper
 			display={"flex"}
-			justify_content={"center"}
-			width={"343px"}
-			background={"#FFFFFF"}
-			box_shadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
-			border_radius={"10px"}
+			justifyContent={"center"}
+			maxWidth={"343px"}
+			bgcolor={"#FFFFFF"}
+			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
+			borderRadius={"10px"}
 			padding={"8px 10px"}
-			align_items={"center"}
+			alignItems={"center"}
 			margin={"0 0 14px 0"}
 			key={index}
 		>
@@ -50,7 +53,7 @@ const Card = ({ item, index }: CardProps) => {
 				<MiniCardText
 					fontWeight={400}
 					fontSize={"14px"}
-					lineheight={"16px"}
+					lineHeight={"16px"}
 					color={"#272727"}
 				>
 					<Link
@@ -75,8 +78,13 @@ const Card = ({ item, index }: CardProps) => {
 };
 
 const Partners: FC<DataProps> = () => {
+	const { breakpoint, minWidth } = useBreakpoint(BREAKPOINTS, "mid");
 	return (
-		<Wrapper display="flex" flexDirection="column">
+		<Wrapper
+			display="flex"
+			flexDirection="column"
+			maxWidth={minWidth > 900 ? "700px" : "343px"}
+		>
 			<TitleWrapper
 				display="flex"
 				justifyContent=" space-between"
@@ -100,7 +108,18 @@ const Partners: FC<DataProps> = () => {
 
 			<Grid container spacing={2} columns={12}>
 				{data.map((item, index) => (
-					<Grid item xs={12} md={6} lg={6} key={index + item.text1}>
+					<Grid
+						item
+						xs={12}
+						md={12}
+						lg={6}
+						key={index + item.text1}
+						sx={[
+							breakpoint === "xs" && {
+								justifyContent: "center",
+							},
+						]}
+					>
 						{<Card item={item} index={index} />}
 					</Grid>
 				))}

@@ -26,13 +26,12 @@ const Card = ({ item, index }: CardProps) => {
 	return (
 		<MiniCardWrapper
 			display={"flex"}
-			justify_content={"space-between"}
-			width={"343px"}
+			justifyContent={"space-between"}
 			border={"1px dashed #CACACA"}
-			box_shadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
-			border_radius={"10px"}
+			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
+			borderRadius={"10px"}
 			padding={"14px 16px"}
-			align_items={"center"}
+			alignItems={"center"}
 			margin={"0 0 14px 0"}
 			key={index}
 		>
@@ -40,10 +39,10 @@ const Card = ({ item, index }: CardProps) => {
 				<MiniCardText
 					fontWeight={700}
 					fontSize={"14px"}
-					lineheight={"16px"}
+					lineHeight={"16px"}
 					color={"#2F80ED"}
 					margin={"0 10px 4px 0"}
-					text_decoration={"underline"}
+					sx={{ textDecoration: "underline" }}
 				>
 					<Link
 						to={item.link ?? "payment"}
@@ -55,7 +54,7 @@ const Card = ({ item, index }: CardProps) => {
 				<MiniCardText
 					fontWeight={400}
 					fontSize={"12px"}
-					lineheight={"14px"}
+					lineHeight={"14px"}
 					color={"#848484"}
 					margin={"0 10px 0 0 "}
 				>

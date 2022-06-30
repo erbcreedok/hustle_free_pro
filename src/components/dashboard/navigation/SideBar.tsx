@@ -5,40 +5,25 @@ import { ReactComponent as ChartIcon } from "../../../images/icons/dashboard/cha
 import { ReactComponent as CalendarIcon } from "../../../images/icons/dashboard/calendar.svg";
 import { ReactComponent as BagIcon } from "../../../images/icons/dashboard/shop.svg";
 import { ReactComponent as UserIcon } from "../../../images/icons/dashboard/profile.svg";
-import { Routes, Route, Link, Outlet, NavLink } from "react-router-dom";
-import { NavProps } from "../../../types/types";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useHttp } from "../../../services/useHttp";
+import { useEffect } from "react";
+import { fetchData } from "../../../store/sidebarActions";
+import { useSelector } from "react-redux";
+import { SidebarTypes, IconMapTypes } from "../../../types/types";
 
 const Icon = styled("svg")`
 	margin-right: 14px;
 `;
 
-const data: NavProps[] = [
-	{
-		name: "home",
-		value: "Главная",
-		icon: <Icon as={HomeIcon} />,
-	},
-	{
-		name: "activity",
-		value: "Активность",
-		icon: <Icon as={ChartIcon} />,
-	},
-	{
-		name: "timetable",
-		value: "Расписание",
-		icon: <Icon as={CalendarIcon} />,
-	},
-	{
-		name: "shop",
-		value: "Магазин",
-		icon: <Icon as={BagIcon} />,
-	},
-	{
-		name: "profile",
-		value: "Профиль",
-		icon: <Icon as={UserIcon} />,
-	},
-];
+const iconMap: IconMapTypes = {
+	HomeIcon: <Icon as={HomeIcon} />,
+	ChartIcon: <Icon as={ChartIcon} />,
+	CalendarIcon: <Icon as={CalendarIcon} />,
+	BagIcon: <Icon as={BagIcon} />,
+	UserIcon: <Icon as={UserIcon} />,
+};
 
 const SideBarWrapper = styled("div")`
 	width: 297px;
@@ -70,27 +55,15 @@ const Li = styled("li")`
 	padding: 30px 0;
 `;
 
-function renderItems(items: NavProps[]) {
-	const item = items.map((item) => {
-		return (
-			<Li key={item.value}>
-				<NavLink
-					style={({ isActive }) =>
-						isActive ? { color: "#6D4EEA" } : {}
-					}
-					to={item.name}
-				>
-					{item.icon}
-					{item.value}
-				</NavLink>
-			</Li>
-		);
-	});
-	return <Ul>{item}</Ul>;
-}
-
 const SideBar = () => {
-	const items = renderItems(data);
+	const { sidebarData }: { sidebarData: SidebarTypes[] } = useSelector(
+		(state: any) => state.sidebar
+	);
+	const dispatch: any = useDispatch();
+	const { request } = useHttp();
+	useEffect(() => {
+		dispatch(fetchData(request));
+	}, []);
 
 	return (
 		<SideBarWrapper
@@ -100,7 +73,25 @@ const SideBar = () => {
 				},
 			}}
 		>
-			{items}
+			<Ul>
+				{sidebarData.map((item, index) => (
+					<Li key={item.value}>
+						<NavLink
+							style={({ isActive }) =>
+								isActive ? { color: "#6D4EEA" } : {}
+							}
+							to={item.name}
+						>
+							{iconMap[item.icon] ? (
+								iconMap[item.icon]
+							) : (
+								<div style={{ marginLeft: "34px" }}></div>
+							)}
+							{item.value}
+						</NavLink>
+					</Li>
+				))}
+			</Ul>
 		</SideBarWrapper>
 	);
 };

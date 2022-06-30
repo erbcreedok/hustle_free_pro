@@ -99,7 +99,7 @@ const Contacts = () => {
 					</ContactTopSection>
 					{data.map((item, index) => (
 						<ListWrapper
-							key={Math.random()}
+							key={index}
 							sx={[
 								item.icons
 									? { display: "flex", alignItems: "center" }

@@ -27,13 +27,12 @@ const Card = ({ item, index }: CardProps) => {
 	return (
 		<MiniCardWrapper
 			display={"flex"}
-			justify_content={"center"}
-			width={"343px"}
-			background={"#FFFFFF"}
-			box_shadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
-			border_radius={"10px"}
+			justifyContent={"center"}
+			bgcolor={"#FFFFFF"}
+			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
+			borderRadius={"10px"}
 			padding={"19px 16px"}
-			align_items={"center"}
+			alignItems={"center"}
 			margin={"0 0 14px 0"}
 			position={"relative"}
 			key={index}
@@ -42,7 +41,7 @@ const Card = ({ item, index }: CardProps) => {
 				<MiniCardText
 					fontWeight={400}
 					fontSize={"12px"}
-					lineheight={"14px"}
+					lineHeight={"14px"}
 					color={"#848484"}
 					margin={"0 10px 4px 0"}
 				>
@@ -51,7 +50,7 @@ const Card = ({ item, index }: CardProps) => {
 				<MiniCardText
 					fontWeight={400}
 					fontSize={"14px"}
-					lineheight={"16px"}
+					lineHeight={"16px"}
 					color={"#272727"}
 					margin={"0 15px 0 0"}
 				>

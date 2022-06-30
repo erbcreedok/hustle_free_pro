@@ -13,7 +13,10 @@ import { styled } from "@mui/material/styles";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { CustomButton } from "../custom/Button";
-import { CssTextFieldLine, CssSingInFormTextField } from "../custom/defaultStyles";
+import {
+	CssTextFieldLine,
+	CssSingInFormTextField,
+} from "../custom/defaultStyles";
 
 const SignInFormWrapper = styled("div")`
 	form {

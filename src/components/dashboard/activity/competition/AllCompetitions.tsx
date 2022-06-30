@@ -46,7 +46,6 @@ const Card = ({ item, index }: CardProps) => {
 			display={"flex"}
 			flexDirection={"column"}
 			justifyContent={"center"}
-			// width={"252px"}
 			bgcolor={"#FFFFFF"}
 			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
 			borderRadius={"10px"}
@@ -58,7 +57,7 @@ const Card = ({ item, index }: CardProps) => {
 				<MediumCardText
 					fontWeight={700}
 					fontSize={"14px"}
-					lineheight={"16px"}
+					lineHeight={"16px"}
 					color={"#000000;"}
 					margin={"6px 0 4px 0"}
 				>
@@ -72,7 +71,7 @@ const Card = ({ item, index }: CardProps) => {
 				<MediumCardText
 					fontWeight={400}
 					fontSize={"14px"}
-					lineheight={"16px"}
+					lineHeight={"16px"}
 					color={"#848484"}
 				>
 					{item.text2}
@@ -97,7 +96,7 @@ const AllCompetitions: FC<DataProps> = () => {
 					fontSize="14px"
 					lineHeight="16px"
 					color="#000000"
-					margin="24px"
+					margin="24px 0"
 				>
 					Соревнования
 				</Title>

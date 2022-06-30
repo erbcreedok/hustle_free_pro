@@ -30,7 +30,6 @@ const Card = ({ item, index }: CardProps) => {
 			display={"flex"}
 			flexDirection={"column"}
 			justifyContent={"center"}
-			width={"690px"}
 			bgcolor={"#FFFFFF"}
 			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
 			borderRadius={"10px"}
@@ -88,7 +87,7 @@ const SingleCompetition: FC<DataProps> = () => {
 			<BackButton label={"Назад"} />
 			<Wrapper maxWidth="690px" marginBottom="70px">
 				{data.map((item, index) => (
-					<Card item={item} index={index} />
+					<Card item={item} index={index} key={index} />
 				))}
 			</Wrapper>
 		</>

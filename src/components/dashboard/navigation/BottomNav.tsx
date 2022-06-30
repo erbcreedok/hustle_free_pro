@@ -57,8 +57,9 @@ export default function BottomNav() {
 			value={value}
 			onChange={handleChange}
 		>
-			{data.map((item) => (
+			{data.map((item, index) => (
 				<NavLink
+					key={index}
 					style={({ isActive }) =>
 						isActive ? { color: "#6D4EEA" } : {}
 					}

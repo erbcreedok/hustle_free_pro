@@ -68,12 +68,10 @@ const WorkoutPayment: FC<PaymentDataProps> = () => {
 				<OL>
 					<DL>
 						{paymentData.map((item, index) => (
-							<>
-								<li>
-									<DT>{item.title}</DT>
-									<DD>{item.definition}</DD>
-								</li>
-							</>
+							<li key={index}>
+								<DT>{item.title}</DT>
+								<DD>{item.definition}</DD>
+							</li>
 						))}
 					</DL>
 				</OL>

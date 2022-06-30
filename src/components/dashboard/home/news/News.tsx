@@ -1,75 +1,31 @@
-import { FC, ReactElement, useState, useCallback, useEffect } from "react";
-import Container from "@mui/material/Container";
-import { styled } from "@mui/material/styles";
-import CloseIcon from "@mui/icons-material/Close";
+import { FC } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import UserCardImage from "../../../../images/GreetingCard/user_card_image.png";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
 	MiniCardWrapper,
 	MiniCardImage,
 	MiniCardTextWrapper,
 	MiniCardText,
 } from "../../../custom/cards/MiniCard";
+import { ShowAllButton } from "../../../custom/ShowAllButton";
+import { TextProps, CardProps, DataProps } from "../../../../types/types";
+import { Wrapper, TitleWrapper, Title } from "../../../custom/defaultStyles";
 
-type NewsTextProp = {
-	date: string; // ?????????????????
-	text: string; // ????????????
-};
-
-const newsData: NewsTextProp[] = [
+const data: TextProps[] = [
 	{
-		date: "24.01.2021",
-		text: "Вы пропустили тренировку, не забудьте посетить ее завтра",
+		text1: "24.01.2021",
+		text2: "Вы пропустили тренировку, не забудьте посетить ее завтра",
 	},
 	{
-		date: "24.01.2021",
-		text: "Вы пропустили тренировку, не забудьте посетить ее завтра",
+		text1: "24.01.2021",
+		text2: "Вы пропустили тренировку, не забудьте посетить ее завтра",
 	},
 	{
-		date: "24.01.2021",
-		text: "Вы пропустили тренировку, не забудьте посетить ее завтра",
+		text1: "24.01.2021",
+		text2: "Вы пропустили тренировку, не забудьте посетить ее завтра",
 	},
 ];
 
-const NewsWrapper = styled("div")`
-	box-sizing: border-box;
-	max-width: 343px;
-	display: flex;
-	flex-direction: column;
-`;
-const NewsTitleWrapper = styled("div")`
-	display: flex;
-	justify-content: space-between;
-`;
-const NewsTitle = styled("h3")`
-	margin: 0 0 14px 0;
-	font-weight: 700;
-	font-size: 18px;
-	line-height: 21px;
-	color: #000000;
-`;
-const AllNewsWrapper = styled("div")`
-	a {
-		text-decoration: none;
-		display: flex;
-		align-items: center;
-		text-decoration: underline;
-	}
-`;
-const Text = styled("div")`
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 14px;
-	color: #2f80ed;
-`;
-
-type CardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: number;
-};
 const Card = ({ item, index }: CardProps) => {
 	return (
 		<MiniCardWrapper
@@ -97,7 +53,7 @@ const Card = ({ item, index }: CardProps) => {
 					color={"#848484"}
 					margin={"0 0 4px 0"}
 				>
-					{item.date}
+					{item.text1}
 				</MiniCardText>
 				<MiniCardText
 					fontWeight={400}
@@ -109,7 +65,7 @@ const Card = ({ item, index }: CardProps) => {
 						to={`news/${index}`}
 						style={{ textDecoration: "none", color: "inherit" }}
 					>
-						{item.text}
+						{item.text2}
 					</Link>
 				</MiniCardText>
 			</MiniCardTextWrapper>
@@ -126,34 +82,33 @@ const Card = ({ item, index }: CardProps) => {
 	);
 };
 
-const News = () => {
+const News: FC<DataProps> = () => {
 	return (
-		<NewsWrapper>
-			<NewsTitleWrapper>
-				<NewsTitle>Новости</NewsTitle>
-				<AllNewsWrapper>
-					<Link
-						to="news"
-						style={{
-							color: "inherit",
-							textDecorationColor: "#2F80ED",
-						}}
-					>
-						<Text>Посмотреть все</Text>
-						<ArrowForwardIcon
-							sx={{
-								width: "20px",
-								height: "12px",
-								color: "#2F80ED",
-							}}
-						/>
-					</Link>
-				</AllNewsWrapper>
-			</NewsTitleWrapper>
-			{(newsData as NewsTextProp[]).map((item, index) => (
-				<Card item={item} index={index} key={item.text + index} />
+		<Wrapper maxWidth="343px" display="flex" flexDirection="column">
+			<TitleWrapper
+				display="flex"
+				justifyContent="space-between"
+				alignItems="center"
+			>
+				<Title
+					margin="0 0 14px 0"
+					fontWeight={700}
+					fontSize="18px"
+					lineHeight="21px"
+					color="#000000"
+				>
+					Новости
+				</Title>
+				<ShowAllButton
+					label="Посмотреть все"
+					to="news"
+					margin="0 0 14px 0"
+				/>
+			</TitleWrapper>
+			{data.map((item, index) => (
+				<Card item={item} index={index} key={item.text1 + index} />
 			))}
-		</NewsWrapper>
+		</Wrapper>
 	);
 };
 

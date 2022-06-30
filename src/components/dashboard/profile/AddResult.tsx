@@ -1,27 +1,21 @@
-import {
-	FC,
-	ReactElement,
-	useState,
-	useCallback,
-	useEffect,
-	Fragment,
-} from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import {
-	TextField,
-	FormControl,
-	Grid,
-	InputLabel,
-	MenuItem,
-} from "@mui/material";
+import { TextField, FormControl, InputLabel, MenuItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { CustomButton } from "../../../components/custom/Button";
 import { getFieldState } from "../../../utils/getFieldState";
-import { CssProfileInput } from "../../custom/styled";
+import { CssProfileInput, Wrapper } from "../../custom/defaultStyles";
+
+type IFormInputs = {
+	competition_date: string;
+	competition_name: string;
+	description: string;
+	result: string;
+	raiting: string;
+};
 
 type NewsTextProp = {
 	title: string;
-	form_name: any; // ???????????????  ANY  ??????????????;
+	form_name: keyof IFormInputs;
 	type: string;
 };
 const data: NewsTextProp[] = [
@@ -52,25 +46,10 @@ const data: NewsTextProp[] = [
 	},
 ];
 
-const Wrapper = styled("div")`
-	max-width: 674px;
-	background: #ffffff;
-	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.03);
-	border-radius: 10px;
-	padding: 24px 12px;
-	margin-bottom: 24px; ;
-`;
 const FormWrapper = styled("div")`
 	margin-bottom: 14px;
 `;
 
-type IFormInputs = {
-	competition_date: string;
-	competition_name: string;
-	description: string;
-	result: string;
-	raiting: string;
-};
 const AddResult = () => {
 	const { control, handleSubmit, register } = useForm<IFormInputs>({
 		defaultValues: {
@@ -88,7 +67,14 @@ const AddResult = () => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<Wrapper>
+			<Wrapper
+				maxWidth="674px"
+				bgcolor="#ffffff"
+				boxShadow="0px 0px 30px rgba(0, 0, 0, 0.03)"
+				borderRadius="10px"
+				padding="24px 12px"
+				marginBottom="24px"
+			>
 				{data.map((item, index) => (
 					<FormWrapper
 						key={index}
@@ -150,7 +136,6 @@ const AddResult = () => {
 												formState,
 											}) => (
 												<FormControl variant="standard">
-													{/* <InputLabel id="demo-simple-select-standard-label">Выберите из списка</InputLabel> */}
 													<TextField
 														variant="standard"
 														select
@@ -166,7 +151,6 @@ const AddResult = () => {
 															item.form_name
 														)}
 														{...field}
-														// label="Выберите из списка"
 													>
 														<MenuItem value="">
 															<em>None</em>
@@ -198,7 +182,6 @@ const AddResult = () => {
 													disabled
 													variant="standard"
 													id="component-simple"
-													// label={item.title}
 													sx={[
 														CssProfileInput,
 														{ width: "100%" },

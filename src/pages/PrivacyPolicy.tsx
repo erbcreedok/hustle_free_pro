@@ -1,15 +1,12 @@
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { useState } from "react";
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
 import { CustomCheckbox } from "../components/custom/Checkbox";
 import { CustomButton } from "../components/custom/Button";
 import { styled } from "@mui/material/styles";
 import { PRIVACY_POLICY_TEXT } from "../components/privacyPolicy/privacyPolicyText";
 import TopBar from "../components/bar/TopBar";
-import { scrollStyles } from "../components/custom/styled";
-import { Box } from "@mui/material";
-// import ShowMoreText from "react-show-more-text";
+import { scrollStyles } from "../components/custom/defaultStyles";
 import useBreakpoint from "use-breakpoint";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
@@ -55,9 +52,7 @@ const TextLayer = styled("div")`
 		#ffffff 89.36%
 	);
 `;
-const MoreButton = styled("button")`
-	z-index: 1000;
-`;
+
 const CheckboxWrapper = styled("div")`
 	justify-content: flex-start;
 	padding: 14px 0;
@@ -77,8 +72,6 @@ const PrivacyCheckTextLink = styled("a")``;
 const styles = () => ({
 	color: "#000",
 	bgcolor: "background.paper",
-	// overflow: 'scroll',
-	// height: '644px',
 	backgroundColor: "#FAFAFA",
 });
 
@@ -87,10 +80,7 @@ type IFormInputs = {
 };
 const PrivacyPolicy = () => {
 	const [showMore, setShowMore] = useState(false);
-	const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-		BREAKPOINTS,
-		"desktop"
-	);
+	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
 
 	const { control, handleSubmit, register } = useForm<IFormInputs>({
 		defaultValues: {
@@ -108,7 +98,7 @@ const PrivacyPolicy = () => {
 			<Container
 				maxWidth="xl"
 				sx={{
-					height: " 100vh ",
+					marginBottom: "70px",
 					display: "flex",
 					flexDirection: "column",
 					alignItems: "center",
@@ -168,7 +158,6 @@ const PrivacyPolicy = () => {
 						control={control}
 						render={({ field, fieldState, formState }) => (
 							<CheckboxWrapper>
-								{/* ЧЕКБОКС ВНУТРИ ФОРМЫ БОЛУ КЕРЕКПА???? */}
 								<CustomCheckbox
 									checked={field.value}
 									onChange={field.onChange}

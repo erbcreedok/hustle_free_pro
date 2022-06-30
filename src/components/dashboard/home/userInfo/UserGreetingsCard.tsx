@@ -1,35 +1,25 @@
-import { FC, ReactElement, useState, useCallback, useEffect } from "react";
-import Container from "@mui/material/Container";
+import { FC } from "react";
 import { styled } from "@mui/material/styles";
-import {
-	MiniCardWrapper,
-	MiniCardTextWrapper,
-	MiniCardText,
-} from "../../../custom/cards/MiniCard";
-
+import { Box } from "@mui/material";
 import UserCardImage from "../../../../images/GreetingCard/user_card_image.png";
+import { TextProps, DataProps } from "../../../../types/types";
 
-type InfoTextProps = {
-	title: string;
-	subtitle: string;
-};
-
-const cardInfoData: InfoTextProps[] = [
+const data: TextProps[] = [
 	{
-		title: "Безлимит",
-		subtitle: "Абонемент",
+		text1: "Безлимит",
+		text2: "Абонемент",
 	},
 	{
-		title: "105",
-		subtitle: "Рейтинг",
+		text1: "105",
+		text2: "Рейтинг",
 	},
 	{
-		title: "21.12.2021",
-		subtitle: "Действителен до",
+		text1: "21.12.2021",
+		text2: "Действителен до",
 	},
 ];
 
-const GreetingCardWrapper = styled("div")`
+const Wrapper = styled(Box)`
 	max-width: 354px;
 	height: 182px;
 	position: relative;
@@ -46,7 +36,7 @@ const GreetingCardWrapper = styled("div")`
 	margin-bottom: 44px;
 	box-sizing: border-box;
 `;
-const UserGreetingWrapper = styled("div")`
+const UserGreetingWrapper = styled(Box)`
 	display: flex;
 	align-items: center;
 `;
@@ -69,7 +59,7 @@ const GreetingImage = styled("img")`
 	box-sizing: border-box;
 `;
 const GreetingInfoWrapper = styled("div")`
-	width: 90%; // ????????????????????????????????????????????????????????????????????
+	width: 90%;
 	height: 85px;
 	display: flex;
 	position: absolute;
@@ -88,7 +78,7 @@ const GreetingInfo = styled("div")`
 	align-items: center;
 	max-width: 85px;
 `;
-type TextProps = {
+type InfoTextProps = {
 	fontWeight: number;
 	fontSize: string;
 	lineheight: string;
@@ -96,7 +86,7 @@ type TextProps = {
 	margin?: string;
 	padding?: string;
 };
-const GreetingInfoText = styled("span")<TextProps>`
+const GreetingInfoText = styled("span")<InfoTextProps>`
 	font-weight: ${(props) => props.fontWeight};
 	font-size: ${(props) => props.fontSize};
 	line-height: ${(props) => props.lineheight};
@@ -106,17 +96,17 @@ const GreetingInfoText = styled("span")<TextProps>`
 	text-align: center;
 `;
 
-const UserGreetingsCard = () => {
+const UserGreetingsCard: FC<DataProps> = () => {
 	return (
-		<GreetingCardWrapper>
+		<Wrapper>
 			<UserGreetingWrapper>
 				<GreetingTitle>Привет, Айгерим!</GreetingTitle>
 				<GreetingImage src={UserCardImage} />
 			</UserGreetingWrapper>
 
 			<GreetingInfoWrapper>
-				{(cardInfoData as InfoTextProps[]).map((item) => (
-					<GreetingInfo key={item.title}>
+				{data.map((item) => (
+					<GreetingInfo key={item.text1}>
 						<GreetingInfoText
 							fontWeight={700}
 							fontSize={"18px"}
@@ -124,7 +114,7 @@ const UserGreetingsCard = () => {
 							color={"#FFFFFF"}
 							margin={"4px"}
 						>
-							{item.title}
+							{item.text1}
 						</GreetingInfoText>
 						<GreetingInfoText
 							fontWeight={400}
@@ -132,12 +122,12 @@ const UserGreetingsCard = () => {
 							lineheight={"14px"}
 							color={"#FFFFFF"}
 						>
-							{item.subtitle}
+							{item.text2}
 						</GreetingInfoText>
 					</GreetingInfo>
 				))}
 			</GreetingInfoWrapper>
-		</GreetingCardWrapper>
+		</Wrapper>
 	);
 };
 

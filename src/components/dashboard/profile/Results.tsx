@@ -1,5 +1,4 @@
-import { styled } from "@mui/material/styles";
-import { useCallback } from "react";
+import { FC, useCallback } from "react";
 import { CustomButton } from "../../../components/custom/Button";
 import { useNavigate } from "react-router-dom";
 import {
@@ -7,13 +6,10 @@ import {
 	MiniCardTextWrapper,
 	MiniCardText,
 } from "../../custom/cards/MiniCard";
+import { TextProps, CardProps, DataProps } from "../../../types/types";
+import { Wrapper, TitleWrapper, Text } from "../../custom/defaultStyles";
 
-type NewsTextProp = {
-	text1: string;
-	text2: string;
-	text3: string;
-};
-const data: NewsTextProp[] = [
+const data: TextProps[] = [
 	{
 		text1: "21.02.2021",
 		text2: "Чемпионата и Первенства Казахстана по киокушинкай",
@@ -30,37 +26,7 @@ const data: NewsTextProp[] = [
 		text3: "Результат: 1 место / Баллы: 20",
 	},
 ];
-type TextProps = {
-	fontWeight: number;
-	fontSize: string;
-	lineheight: string;
-	color: string;
-	margin?: string;
-};
-const ProfileText = styled("span")<TextProps>`
-	font-weight: ${(props) => props.fontWeight};
-	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineheight};
-	color: ${(props) => props.color};
-	margin: ${(props) => props.margin};
-`;
 
-const ResultWrapper = styled("div")`
-	width: 100%;
-	margin-top: 34px;
-`;
-const ResultTitleWrapper = styled("div")`
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 14px;
-`;
-
-type CardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: number;
-};
 const Card = ({ item, index }: CardProps) => {
 	return (
 		<MiniCardWrapper
@@ -106,35 +72,42 @@ const Card = ({ item, index }: CardProps) => {
 	);
 };
 
-const Results = () => {
+const Results: FC<DataProps> = () => {
 	const navigate = useNavigate();
 
 	const onNavigate = useCallback(() => {
 		navigate("add");
-	}, []); // зависимость????
+	}, []);
 
 	return (
-		<ResultWrapper>
-			<ResultTitleWrapper>
-				<ProfileText
+		<Wrapper width="100%" marginTop="34px">
+			<TitleWrapper
+				width="100%"
+				display="flex"
+				justifyContent="space-between"
+				marginBottom="14px"
+			>
+				<Text
+					display="inline"
 					fontWeight={700}
 					fontSize={"18px"}
-					lineheight={"21px"}
+					lineHeight={"21px"}
 					color={"#000000"}
 				>
 					Мои результаты
-				</ProfileText>
-				<ProfileText
+				</Text>
+				<Text
+					display="inline"
 					fontWeight={400}
 					fontSize={"14px"}
-					lineheight={"16px"}
+					lineHeight={"16px"}
 					color={"#272727"}
 				>
 					Рейтинг: 105
-				</ProfileText>
-			</ResultTitleWrapper>
-			{(data as NewsTextProp[]).map((item, index) => (
-				<Card item={item} index={index} />
+				</Text>
+			</TitleWrapper>
+			{data.map((item, index) => (
+				<Card item={item} index={index} key={index + item.text1} />
 			))}
 			<CustomButton
 				width={"100%"}
@@ -146,7 +119,7 @@ const Results = () => {
 				}
 				position={"center"}
 			/>
-		</ResultWrapper>
+		</Wrapper>
 	);
 };
 

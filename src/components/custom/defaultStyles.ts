@@ -1,36 +1,19 @@
 import { styled } from "@mui/material/styles";
+import { Typography, Box } from "@mui/material";
 
-type TextProps = {
-	fontFamily?: string;
-	fontStyle?: string;
-	fontWeight?: number;
-	fontSize?: string;
-	lineHeight?: string;
-	color?: string;
-	margin?: string;
-	padding?: string;
-	opacity?: string;
-	zIndex?: string;
-	width?: string;
-	height?: string;
-	display?: string;
-	textDecoration?: string;
-};
-export const Text = styled("span")<TextProps>`
-	font-weight: ${(props) => props.fontWeight};
-	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineHeight};
-	font-style: ${(props) => props.fontStyle};
-	color: ${(props) => props.color};
-	font-family: ${(props) => props.fontFamily};
-	margin: ${(props) => props.margin};
-	padding: ${(props) => props.padding};
-	opacity: ${(props) => props.opacity};
-	z-index: ${(props) => props.zIndex};
-	width: ${(props) => props.width};
-	height: ${(props) => props.height};
-	text-decoration: ${(props) => props.textDecoration};
-`;
+// Wrapper
+export const Wrapper = styled(Box)``;
+
+// Title Wrapper
+export const TitleWrapper = styled(Box)``;
+// Title
+export const Title = styled(Typography)``;
+
+// Text
+export const Text = styled(Typography)``;
+// Text Wrapper
+export const TextWrapper = styled(Typography)``;
+
 type ScrollProps = {
 	width?: string;
 	height?: string;
@@ -146,5 +129,57 @@ export const CssProfileFilledInput = () => ({
 	},
 	"& .MuiFilledInput-underline:after": {
 		borderBottomColor: "#d8d2cf", // Solid underline on focus
+	},
+});
+
+export const SignInFormTextStyles = () => ({
+	fontWeight: 400,
+	fontSize: "12px",
+	lineHeight: "14px",
+});
+
+export const BottomNavDefaultStyles = () => ({
+	width: "100%",
+	position: "fixed",
+	bottom: 0,
+	zIndex: 1000,
+	padding: "0px 16px",
+	boxShadow: "0px -2px 5px 0px rgb(86 86 86 / 20%)",
+	"@media (min-width: 769px)": {
+		display: "none",
+	},
+	"&.MuiBottomNavigation-root .MuiButtonBase-root": {
+		minWidth: "unset",
+	},
+	"&.MuiBottomNavigation-root a": {
+		textDecoration: "unset",
+	},
+	"&.MuiBottomNavigation-root .active button, &.MuiBottomNavigation-root .active span":
+		{
+			color: "#6D4EEA",
+		},
+	"& .MuiBottomNavigationAction-label": {
+		fontFamily: "Raleway",
+		fontSize: "10px",
+		fontWeight: 400,
+		lineHeight: "12px",
+		opacity: "unset",
+		marginTop: "4px",
+		color: "#848484",
+	},
+	"& .MuiBottomNavigationAction-label.Mui-selected": {
+		color: "#6D4EEA",
+	},
+});
+
+export const muiSelectDefaultStyles = () => ({
+	"&.MuiFormControl-root .MuiInput-root .MuiNativeSelect-select": {
+		paddingRight: " 16px !important",
+		fontWeight: "700",
+		fontSize: "18px",
+		color: "#272727",
+	},
+	"&.MuiFormControl-root .MuiInput-root .MuiSvgIcon-root": {
+		color: " #272727",
 	},
 });

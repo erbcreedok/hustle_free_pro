@@ -1,42 +1,27 @@
-import { FC, ReactElement, useState, useCallback, useEffect } from "react";
-import Container from "@mui/material/Container";
-import { styled } from "@mui/material/styles";
+import { FC } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
 	MiniCardWrapper,
 	MiniCardTextWrapper,
 	MiniCardText,
 } from "../../../custom/cards/MiniCard";
-import { Routes, Route, Link, Outlet, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { TextProps, CardProps, DataProps } from "../../../../types/types";
+import { Wrapper } from "../../../custom/defaultStyles";
 
-type ContactsTextProps = {
-	title: string;
-	subtitle: string;
-	link: string;
-};
-
-const contactsData: ContactsTextProps[] = [
+const data: TextProps[] = [
 	{
-		title: "Как оплатить тренировки?",
-		subtitle: "Информация о стоимости и способах оплаты тренировок",
+		text1: "Как оплатить тренировки?",
+		text2: "Информация о стоимости и способах оплаты тренировок",
 		link: "payment",
 	},
 	{
-		title: "Контакты ",
-		subtitle: "Мкр. Самал, д. 2/3, 3 этаж, +7 (777) 777-77-77",
+		text1: "Контакты ",
+		text2: "Мкр. Самал, д. 2/3, 3 этаж, +7 (777) 777-77-77",
 		link: "contacts",
 	},
 ];
 
-const ContactsWrapper = styled("div")`
-	max-width: 343px;
-`;
-
-type CardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: number;
-};
 const Card = ({ item, index }: CardProps) => {
 	return (
 		<MiniCardWrapper
@@ -60,8 +45,11 @@ const Card = ({ item, index }: CardProps) => {
 					margin={"0 10px 4px 0"}
 					text_decoration={"underline"}
 				>
-					<Link to={item.link} style={{ color: "inherit" }}>
-						{item.title}
+					<Link
+						to={item.link ?? "payment"}
+						style={{ color: "inherit" }}
+					>
+						{item.text1}
 					</Link>
 				</MiniCardText>
 				<MiniCardText
@@ -71,10 +59,10 @@ const Card = ({ item, index }: CardProps) => {
 					color={"#848484"}
 					margin={"0 10px 0 0 "}
 				>
-					{item.subtitle}
+					{item.text2}
 				</MiniCardText>
 			</MiniCardTextWrapper>
-			<Link to={item.link}>
+			<Link to={item.link ?? "payment"}>
 				<ArrowForwardIosIcon
 					sx={{
 						color: "#848484",
@@ -87,13 +75,13 @@ const Card = ({ item, index }: CardProps) => {
 	);
 };
 
-const Contacts = () => {
+const Contacts: FC<DataProps> = () => {
 	return (
-		<ContactsWrapper>
-			{(contactsData as ContactsTextProps[]).map((item, index) => (
-				<Card item={item} index={index} key={item.subtitle + index} />
+		<Wrapper maxWidth="343px">
+			{data.map((item, index) => (
+				<Card item={item} index={index} key={item.text1 + index} />
 			))}
-		</ContactsWrapper>
+		</Wrapper>
 	);
 };
 

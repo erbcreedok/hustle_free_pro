@@ -1,7 +1,5 @@
-import { FC, useState, useCallback, useEffect, Fragment } from "react";
+import { FC, Fragment } from "react";
 import { Grid } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import PartnerImage from "../../../../images/activity/partner_image.png";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import useBreakpoint from "use-breakpoint";
 import {
@@ -16,65 +14,34 @@ import {
 	MiniCardTextWrapper,
 	MiniCardText,
 } from "../../../custom/cards/MiniCard";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { TextProps, CardProps, DataProps } from "../../../../types/types";
+import { Wrapper, TitleWrapper, Title } from "../../../custom/defaultStyles";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
-type NewsTextProp = {
-	text: string;
-};
-
-const partnerData: NewsTextProp[] = [
+const data: TextProps[] = [
 	{
-		text: "Скидка 20% на продукты питания от Degreen.kz.",
+		text1: "Скидка 20% на продукты питания от Degreen.kz.",
 	},
 	{
-		text: "Скидка 20% на продукты питания от Degreen.kz.",
+		text1: "Скидка 20% на продукты питания от Degreen.kz.",
 	},
 	{
-		text: "Скидка 20% на продукты питания от Degreen.kz.",
+		text1: "Скидка 20% на продукты питания от Degreen.kz.",
 	},
 	{
-		text: "Скидка 20% на продукты питания от Degreen.kz.",
+		text1: "Скидка 20% на продукты питания от Degreen.kz.",
 	},
 	{
-		text: "Скидка 20% на продукты питания от Degreen.kz.",
+		text1: "Скидка 20% на продукты питания от Degreen.kz.",
 	},
 	{
-		text: "Скидка 20% на продукты питания от Degreen.kz.",
+		text1: "Скидка 20% на продукты питания от Degreen.kz.",
 	},
 ];
 
-const Wrapper = styled("div")`
-	margin-bottom: 34px;
-`;
-const TitleWrapper = styled("div")`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-`;
-
-type TitleProps = {
-	fontWeight: number;
-	fontSize: string;
-	lineheight: string;
-	color: string;
-	margin?: string;
-};
-const Title = styled("h3")<TitleProps>`
-	font-weight: ${(props) => props.fontWeight};
-	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineheight};
-	color: ${(props) => props.color};
-	margin-bottom: ${(props) => props.margin};
-`;
-
-type MiniCardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: number;
-};
-const MiniCard = ({ item, index }: MiniCardProps) => {
+const MiniCard = ({ item, index }: CardProps) => {
 	return (
 		<MiniCardWrapper
 			display={"flex"}
@@ -104,7 +71,7 @@ const MiniCard = ({ item, index }: MiniCardProps) => {
 						to={`${index}`}
 						style={{ textDecoration: "none", color: "inherit" }}
 					>
-						{item.text}
+						{item.text1}
 					</Link>
 				</MiniCardText>
 			</MiniCardTextWrapper>
@@ -121,21 +88,16 @@ const MiniCard = ({ item, index }: MiniCardProps) => {
 	);
 };
 
-type MeduimCardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: number;
-};
-const MeduimCard = ({ item, index }: MeduimCardProps) => {
+const MeduimCard = ({ item, index }: CardProps) => {
 	return (
 		<MediumCardWrapper
 			display={"flex"}
-			flex_direction={"column"}
-			justify_content={"center"}
-			width={"327px"}
-			background={"#FFFFFF"}
-			box_shadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
-			border_radius={"10px"}
+			flexDirection={"column"}
+			justifyContent={"center"}
+			// width={"327px"}
+			bgcolor={"#FFFFFF"}
+			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
+			borderRadius={"10px"}
 			padding={"12px"}
 			key={index}
 		>
@@ -152,7 +114,7 @@ const MeduimCard = ({ item, index }: MeduimCardProps) => {
 						to={`${index}`}
 						style={{ textDecoration: "none", color: "inherit" }}
 					>
-						{item.text}
+						{item.text1}
 					</Link>
 				</MediumCardText>
 			</MediumCardTextWrapper>
@@ -160,19 +122,20 @@ const MeduimCard = ({ item, index }: MeduimCardProps) => {
 	);
 };
 
-const AllPartners = () => {
-	const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-		BREAKPOINTS,
-		"desktop"
-	);
+const AllPartners: FC<DataProps> = () => {
+	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
 
 	return (
-		<Wrapper>
-			<TitleWrapper>
+		<Wrapper marginBottom="34px">
+			<TitleWrapper
+				display="flex"
+				justifyContent="space-between"
+				alignItems="center"
+			>
 				<Title
 					fontWeight={700}
 					fontSize={"18px"}
-					lineheight={"21px"}
+					lineHeight={"21px"}
 					color={"#272727"}
 					margin={"34px"}
 				>
@@ -197,7 +160,7 @@ const AllPartners = () => {
 					md={12}
 					lg={11}
 				>
-					{(partnerData as NewsTextProp[]).map((item, index) => (
+					{data.map((item, index) => (
 						<Fragment key={Date.now() + Math.random()}>
 							<Grid
 								container

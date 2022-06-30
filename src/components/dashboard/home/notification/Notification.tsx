@@ -1,53 +1,28 @@
-import { FC, ReactElement, useState, useCallback, useEffect } from "react";
-import Container from "@mui/material/Container";
-import { styled } from "@mui/material/styles";
+import { FC } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import {
 	MiniCardWrapper,
 	MiniCardTextWrapper,
 	MiniCardText,
 } from "../../../custom/cards/MiniCard";
+import { TextProps, CardProps, DataProps } from "../../../../types/types";
+import { Wrapper, Title } from "../../../custom/defaultStyles";
 
-type NotificationTextProps = {
-	date: string; // ?????????????????
-	text: string; // ????????????
-};
-
-const notificationData: NotificationTextProps[] = [
+const data: TextProps[] = [
 	{
-		date: "24.01.2021",
-		text: "Вы пропустили тренировку, не забудьте посетить ее завтра",
+		text1: "24.01.2021",
+		text2: "Вы пропустили тренировку, не забудьте посетить ее завтра",
 	},
 	{
-		date: "24.01.2021",
-		text: "Вы пропустили тренировку, не забудьте посетить ее завтра",
+		text1: "24.01.2021",
+		text2: "Вы пропустили тренировку, не забудьте посетить ее завтра",
 	},
 	{
-		date: "24.01.2021",
-		text: "Вы пропустили тренировку, не забудьте посетить ее завтра",
+		text1: "24.01.2021",
+		text2: "Вы пропустили тренировку, не забудьте посетить ее завтра",
 	},
 ];
 
-const NotificationWrapper = styled("div")`
-	box-sizing: border-box;
-	max-width: 343px;
-	display: flex;
-	flex-direction: column;
-`;
-const NotificationTitle = styled("h3")`
-	width: 100%;
-	margin: 0 0 14px 0;
-	font-weight: 700;
-	font-size: 18px;
-	line-height: 21px;
-	color: #000000;
-`;
-
-type CardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: number;
-};
 const Card = ({ item, index }: CardProps) => {
 	return (
 		<MiniCardWrapper
@@ -71,7 +46,7 @@ const Card = ({ item, index }: CardProps) => {
 					color={"#848484"}
 					margin={"0 10px 4px 0"}
 				>
-					{item.date}
+					{item.text1}
 				</MiniCardText>
 				<MiniCardText
 					fontWeight={400}
@@ -80,7 +55,7 @@ const Card = ({ item, index }: CardProps) => {
 					color={"#272727"}
 					margin={"0 15px 0 0"}
 				>
-					{item.text}
+					{item.text2}
 				</MiniCardText>
 			</MiniCardTextWrapper>
 			<CloseIcon
@@ -97,16 +72,23 @@ const Card = ({ item, index }: CardProps) => {
 	);
 };
 
-const Notification = () => {
+const Notification: FC<DataProps> = () => {
 	return (
-		<NotificationWrapper>
-			<NotificationTitle>Уведомления</NotificationTitle>
-			{(notificationData as NotificationTextProps[]).map(
-				(item, index) => (
-					<Card item={item} index={index} key={item.text + index} />
-				)
-			)}
-		</NotificationWrapper>
+		<Wrapper maxWidth="343px" display="flex" flexDirection="column">
+			<Title
+				width="100%"
+				margin="0 0 14px 0"
+				fontWeight={700}
+				fontSize="18px"
+				lineHeight="21px"
+				color="#000000"
+			>
+				Уведомления
+			</Title>
+			{data.map((item, index) => (
+				<Card item={item} index={index} key={item.text1 + index} />
+			))}
+		</Wrapper>
 	);
 };
 

@@ -1,20 +1,12 @@
-import { FC, useState, useCallback, useEffect } from "react";
-import { Container, Grid } from "@mui/material";
-import { styled } from "@mui/material/styles";
-
+import { Grid } from "@mui/material";
 import Competition from "../../components/dashboard/activity/competition/Competition";
 import Partners from "../../components/dashboard/activity/partners/Partner";
 import Support from "../../components/dashboard/activity/support/Support";
-
-const Wrapper = styled("div")`
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 70px;
-`;
+import { Wrapper } from "../../components/custom/defaultStyles";
 
 const Activity = () => {
 	return (
-		<Wrapper>
+		<Wrapper display="flex" flexDirection="column" marginBottom="70px">
 			<Competition />
 			<Grid
 				container

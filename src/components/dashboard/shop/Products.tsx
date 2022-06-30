@@ -1,21 +1,15 @@
 import { Grid } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import {
 	MediumCardWrapper,
 	MediumCardImage,
 	MediumCardTextWrapper,
 	MediumCardText,
 } from "../../custom/cards/MediumCard";
-import useBreakpoint from "use-breakpoint";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FC } from "react";
+import { TextProps, CardProps, DataProps } from "../../../types/types";
 
-const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
-
-type NewsTextProp = {
-	text1: string;
-	text2: string;
-};
-const shopData: NewsTextProp[] = [
+const data: TextProps[] = [
 	{
 		text1: "Кимоно для тхэквондо",
 		text2: "54500",
@@ -42,22 +36,17 @@ const shopData: NewsTextProp[] = [
 	},
 ];
 
-type CardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: any;
-};
 const Card = ({ item, index }: CardProps) => {
 	return (
 		<MediumCardWrapper
 			display={"flex"}
-			flex_direction={"column"}
-			justify_content={"center"}
-			width={"209px"}
+			flexDirection={"column"}
+			justifyContent={"center"}
+			// width={"209px"}
 			height={"282px"}
-			background={"#FFFFFF"}
-			box_shadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
-			border_radius={"10px"}
+			bgcolor={"#FFFFFF"}
+			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
+			borderRadius={"10px"}
 			padding={"16px"}
 			key={index}
 		>
@@ -88,15 +77,10 @@ const Card = ({ item, index }: CardProps) => {
 	);
 };
 
-const Products = () => {
-	const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-		BREAKPOINTS,
-		"desktop"
-	);
-
+const Products: FC<DataProps> = () => {
 	return (
 		<Grid container spacing={2} columns={12}>
-			{(shopData as NewsTextProp[]).map((item, index) => (
+			{data.map((item, index) => (
 				<Grid item xs={6} sm={6} md={4} lg={4} key={index}>
 					{<Card item={item} index={index} />}
 				</Grid>

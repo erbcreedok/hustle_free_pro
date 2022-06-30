@@ -1,21 +1,20 @@
-import { FC, useState, useCallback, useEffect } from "react";
-import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
 import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
 
 import UserGreetingsCard from "../../components/dashboard/home/userInfo/UserGreetingsCard";
 import Contacts from "../../components/dashboard/home/userInfo/Contacts";
 import Notification from "../../components/dashboard/home/notification/Notification";
 import News from "../../components/dashboard/home/news/News";
 
-const DashGreetingWrapper = styled("div")``;
-const DashGreetingInfoSection = styled("div")``;
-const DashNotifySection = styled("div")``;
-const DashNewsSection = styled("div")``;
+const DashGreetingWrapper = styled(Box)``;
+const DashGreetingInfoSection = styled(Box)``;
+const DashNotifySection = styled(Box)``;
+const DashNewsSection = styled(Box)``;
 
 const HomeIndex = () => {
 	return (
-		<DashGreetingWrapper sx={{ marginBottom: "70px" }}>
+		<DashGreetingWrapper marginBottom="70px">
 			<Grid container spacing={2} columns={12}>
 				<Grid
 					container

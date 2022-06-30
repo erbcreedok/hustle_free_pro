@@ -1,11 +1,8 @@
-import { FC, useState, useCallback, useEffect, Fragment } from "react";
+import { FC, Fragment } from "react";
 import { Grid } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import PartnerImage from "../../../../images/activity/partner_image.png";
-// import MiniCard from '../../../../components/custom/MiniCard';
 import useBreakpoint from "use-breakpoint";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
 	MediumCardWrapper,
 	MediumCardImage,
@@ -18,15 +15,12 @@ import {
 	MiniCardTextWrapper,
 	MiniCardText,
 } from "../../../custom/cards/MiniCard";
+import { TextProps, CardProps, DataProps } from "../../../../types/types";
+import { Wrapper, TitleWrapper, Title } from "../../../custom/defaultStyles";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
-type NewsTextProp = {
-	text1: string;
-	text2: string;
-};
-
-const newsData: NewsTextProp[] = [
+const data: TextProps[] = [
 	{
 		text1: "24.01.2021",
 		text2: "Клубные карты уже доступны в продаже, подробности...",
@@ -53,37 +47,7 @@ const newsData: NewsTextProp[] = [
 	},
 ];
 
-const Wrapper = styled("div")`
-	margin-bottom: 34px;
-`;
-
-const TitleWrapper = styled("div")`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-`;
-
-type TitleProps = {
-	fontWeight: number;
-	fontSize: string;
-	lineheight: string;
-	color: string;
-	margin?: string;
-};
-const Title = styled("h3")<TitleProps>`
-	font-weight: ${(props) => props.fontWeight};
-	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineheight};
-	color: ${(props) => props.color};
-	margin-bottom: ${(props) => props.margin};
-`;
-
-type MiniCardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: number;
-};
-const MiniCard = ({ item, index }: MiniCardProps) => {
+const MiniCard = ({ item, index }: CardProps) => {
 	return (
 		<MiniCardWrapper
 			display={"flex"}
@@ -140,21 +104,16 @@ const MiniCard = ({ item, index }: MiniCardProps) => {
 	);
 };
 
-type MediumCardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: any;
-};
-const MediumCard = ({ item, index }: MediumCardProps) => {
+const MediumCard = ({ item, index }: CardProps) => {
 	return (
 		<MediumCardWrapper
 			display={"flex"}
-			flex_direction={"column"}
-			justify_content={"center"}
-			width={"327px"}
-			background={"#FFFFFF"}
-			box_shadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
-			border_radius={"10px"}
+			flexDirection={"column"}
+			justifyContent={"center"}
+			// width={"327px"}
+			bgcolor={"#FFFFFF"}
+			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
+			borderRadius={"10px"}
 			padding={"12px"}
 			key={index}
 		>
@@ -189,25 +148,20 @@ const MediumCard = ({ item, index }: MediumCardProps) => {
 	);
 };
 
-const AllNews = () => {
-	const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-		BREAKPOINTS,
-		"desktop"
-	);
+const AllNews: FC<DataProps> = () => {
+	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
 
 	return (
-		<Wrapper
-			sx={[
-				breakpoint === "mobile" && {
-					marginBottom: "70px",
-				},
-			]}
-		>
-			<TitleWrapper>
+		<Wrapper marginBottom={breakpoint === "mobile" ? "70px" : "34px"}>
+			<TitleWrapper
+				display="flex"
+				justifyContent="space-between"
+				alignItems="center"
+			>
 				<Title
 					fontWeight={700}
 					fontSize={"18px"}
-					lineheight={"21px"}
+					lineHeight={"21px"}
 					color={"#000000"}
 					margin={"34px"}
 				>
@@ -225,7 +179,7 @@ const AllNews = () => {
 				]}
 			>
 				<Grid container item spacing={2} md={12} lg={11}>
-					{(newsData as NewsTextProp[]).map((item, index) => (
+					{data.map((item, index) => (
 						<Fragment key={Date.now() + Math.random()}>
 							<Grid
 								container

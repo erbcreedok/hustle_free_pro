@@ -1,26 +1,13 @@
-import { FC, useState, useCallback, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import CardImage from "../../../images/activity/single_partner.png";
 import Divider from "@mui/material/Divider";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { CustomButton } from "../../custom/Button";
-import Carousel from "react-material-ui-carousel";
 import useBreakpoint from "use-breakpoint";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
 import { BackButton } from "../../custom/BackButton";
+import { Wrapper, Text } from "../../custom/defaultStyles";
 
-const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
+const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280, minWidth: 900 };
 
-const Wrapper = styled("div")`
-	max-width: 674px;
-	background: #ffffff;
-	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.03);
-	border-radius: 10px;
-	padding: 14px;
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 70px;
-`;
 const ImageWrapper = styled("div")`
 	display: flex;
 	flex-wrap: wrap;
@@ -29,50 +16,36 @@ const Image = styled("img")`
 	max-width: 319px;
 	height: 250px;
 	border-radius: 10px;
+	object-fit: cover;
 `;
 const ProductPriceWrapper = styled("div")`
 	margin-left: 16px;
 `;
-type TextProps = {
-	fontWeight: number;
-	fontSize: string;
-	lineheight: string;
-	color: string;
-	margin?: string;
-};
-const ProductText = styled("p")<TextProps>`
-	font-weight: ${(props) => props.fontWeight};
-	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineheight};
-	color: ${(props) => props.color};
-	margin: ${(props) => props.margin};
-`;
+
 const CharacteristicWrapper = styled("div")`
 	margin: 14px 0;
 `;
 const DescriptionWrapper = styled("div")`
 	margin-top: 14px;
 `;
-// ???????????   CAROUSEL  ????????????????????????????
 
 const SingleProduct = () => {
-	const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-		BREAKPOINTS,
-		"desktop"
-	);
+	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
 
 	return (
 		<>
 			<BackButton label={"Назад"} />
 
 			<Wrapper
-				sx={[
-					breakpoint === "mobile" && {
-						maxWidth: "504px",
-						margin: "0 auto",
-						marginBottom: "70px",
-					},
-				]}
+				maxWidth={breakpoint === "mobile" ? "504px" : "674px"}
+				bgcolor="#ffffff"
+				boxShadow="0px 0px 30px rgba(0, 0, 0, 0.03)"
+				borderRadius="10px"
+				padding="14px"
+				display="flex"
+				flexDirection="column"
+				marginBottom="126px !important"
+				margin={breakpoint === "mobile" ? "0 auto" : ""}
 			>
 				<ImageWrapper>
 					<Image
@@ -90,33 +63,33 @@ const SingleProduct = () => {
 							margin: { xs: "14px 0", md: "0 0 0 16px" },
 						}}
 					>
-						<ProductText
+						<Text
 							fontWeight={700}
 							fontSize={"18px"}
-							lineheight={"21px"}
+							lineHeight={"21px"}
 							color={"#272727"}
 							margin={"0 0 14px 0"}
 						>
 							Кимоно для тхэквондо
-						</ProductText>
-						<ProductText
+						</Text>
+						<Text
 							fontWeight={700}
 							fontSize={"12px"}
-							lineheight={"14px"}
+							lineHeight={"14px"}
 							color={"#848484"}
 							margin={"0 0 14px 0"}
 						>
 							Артикул: 365434
-						</ProductText>
-						<ProductText
+						</Text>
+						<Text
 							fontWeight={700}
 							fontSize={"18px"}
-							lineheight={"21px"}
+							lineHeight={"21px"}
 							color={"#272727"}
 							margin={"0 0 14px 0"}
 						>
 							54500 тнг
-						</ProductText>
+						</Text>
 						<CustomButton
 							width={"100%"}
 							height={"48px"}
@@ -131,27 +104,27 @@ const SingleProduct = () => {
 				<Divider />
 
 				<CharacteristicWrapper>
-					<ProductText
+					<Text
 						fontWeight={700}
 						fontSize={"14px"}
-						lineheight={"16px"}
+						lineHeight={"16px"}
 						color={"#272727"}
 						margin={"0 0 12px 0"}
 					>
 						Характеристики:
-					</ProductText>
+					</Text>
 					<ul>
 						{[1, 2, 3].map((item, index) => (
 							<li key={index}>
-								<ProductText
+								<Text
 									fontWeight={400}
 									fontSize={"14px"}
-									lineheight={"16px"}
+									lineHeight={"16px"}
 									color={"#272727"}
 									margin={"0"}
 								>
 									100% хлопок. Плотность 200 гр./м
-								</ProductText>
+								</Text>
 							</li>
 						))}
 					</ul>
@@ -165,20 +138,20 @@ const SingleProduct = () => {
 						},
 					]}
 				>
-					<ProductText
+					<Text
 						fontWeight={700}
 						fontSize={"14px"}
-						lineheight={"16px"}
+						lineHeight={"16px"}
 						color={"#272727"}
 						margin={"0 0 12px 0"}
 					>
 						Описание:
-					</ProductText>
+					</Text>
 
-					<ProductText
+					<Text
 						fontWeight={400}
 						fontSize={"14px"}
-						lineheight={"21px"}
+						lineHeight={"21px"}
 						color={"#272727"}
 						margin={"0"}
 					>
@@ -187,7 +160,7 @@ const SingleProduct = () => {
 						finibus ullamcorper vehicula dis parturient, suscipit
 						praesent aliquam lacinia donec condimentum luctus,
 						imperdiet auctor facilisi enim odio risus.
-					</ProductText>
+					</Text>
 				</DescriptionWrapper>
 			</Wrapper>
 		</>

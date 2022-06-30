@@ -5,10 +5,12 @@ import {
 	Navigate,
 } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import SignIn from "./pages/SignIn";
-import Dashboard from "./pages/Dashboard";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ProgressCircular from "./components/custom/ProgressCircular";
 import "./App.css";
+
+const SignIn = lazy(() => import("./pages/SignIn"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 
 const Activity = lazy(() => import("./pages/activity/Activity"));
 const AllCompetitions = lazy(
@@ -52,7 +54,7 @@ function App() {
 	return (
 		<Router basename="/">
 			<main>
-				<Suspense fallback={<div>Loading...</div>}>
+				<Suspense fallback={<ProgressCircular />}>
 					<Routes>
 						<Route path="/" element={<SignIn />} />
 						<Route path="/privacy" element={<PrivacyPolicy />} />

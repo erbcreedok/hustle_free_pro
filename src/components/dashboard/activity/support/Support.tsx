@@ -1,23 +1,19 @@
-import { FC, ReactElement, useState, useCallback, useEffect } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-// import {Container, Grid} from '@mui/material';
-import { styled, makeStyles } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { CustomButton } from "../../../custom/Button";
 import { TextField } from "@mui/material";
-// import InputLabel from '@mui/material/InputLabel';
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import {
 	CssTextField,
 	CssTextFieldSelect,
 	CssTextFieldLine,
-} from "../../../custom/styled";
-// import Select, { SelectChangeEvent } from '@mui/material/Select';
-// import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-// import Divider from '@mui/material/Divider';
+} from "../../../custom/defaultStyles";
+import { TitleWrapper, Title } from "../../../custom/defaultStyles";
 
 const FormWrapper = styled("div")`
 	margin-left: 8px;
+	margin-bottom: 20px;
 	form {
 		display: flex;
 		flex-direction: column;
@@ -30,18 +26,6 @@ const FormWrapper = styled("div")`
 	}
 `;
 
-const TitleWrapper = styled("div")`
-	display: flex;
-	justify-content: space-between;
-`;
-const Title = styled("h3")`
-	margin: 0 0 14px 0;
-	font-style: normal;
-	font-weight: 700;
-	font-size: 18px;
-	line-height: 21px;
-	color: #272727;
-`;
 const TextfieldWrapper = styled("div")`
 	display: flex;
 	align-items: center;
@@ -59,14 +43,7 @@ type IFormInputs = {
 	donationAmount: number;
 	comment: string;
 };
-// const CssTextField = () => ({
-//   '& .MuiInput-underline:before': {
-//     borderBottomColor: '#F2F2F2',
-//   },
-//   '& .MuiInput-underline:after': {
-//     borderBottomColor: '#F2F2F2',
-//   },
-// })
+
 const Support = () => {
 	const { control, handleSubmit, register } = useForm<IFormInputs>({
 		defaultValues: {
@@ -82,8 +59,17 @@ const Support = () => {
 
 	return (
 		<FormWrapper>
-			<TitleWrapper>
-				<Title>Поддержка</Title>
+			<TitleWrapper display="flex" justifyContent="space-between">
+				<Title
+					margin="0 0 14px 0"
+					fontStyle="normal"
+					fontWeight={700}
+					fontSize="18px"
+					lineHeight="21px"
+					color="#272727"
+				>
+					Поддержка
+				</Title>
 			</TitleWrapper>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Controller
@@ -92,7 +78,6 @@ const Support = () => {
 					rules={{ required: true }}
 					render={({ field, fieldState, formState }) => (
 						<FormControl variant="standard">
-							{/* <InputLabel id="demo-simple-select-standard-label">Выберите из списка</InputLabel> */}
 							<TextField
 								variant="standard"
 								select

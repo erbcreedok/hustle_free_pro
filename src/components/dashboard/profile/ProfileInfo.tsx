@@ -1,58 +1,46 @@
 import { useNavigate } from "react-router-dom";
-import { useCallback } from "react";
+import { FC, useCallback } from "react";
 import { styled } from "@mui/material/styles";
 import UserCardImage from "../../../images/GreetingCard/user_card_image.png";
 import { CustomButton } from "../../../components/custom/Button";
+import { TextProps, ProfileInfoData } from "../../../types/types";
+import { Wrapper, TextWrapper, Text } from "../../custom/defaultStyles";
 
-type NewsTextProp = {
-	title: string;
-	text: string;
-};
-const userData: NewsTextProp[] = [
+const data: TextProps[] = [
 	{
-		title: "Имя",
-		text: "Maxim Tsinovkin",
+		text1: "Имя",
+		text2: "Maxim Tsinovkin",
 	},
 	{
-		title: "Вы с нами с",
-		text: "21.02.2021",
+		text1: "Вы с нами с",
+		text2: "21.02.2021",
 	},
 	{
-		title: "Логин",
-		text: "12456",
+		text1: "Логин",
+		text2: "12456",
 	},
 	{
-		title: "Договор",
-		text: "Подписан (Скачать)",
+		text1: "Договор",
+		text2: "Подписан (Скачать)",
 	},
 	{
-		title: "Пояс",
-		text: "Красный",
+		text1: "Пояс",
+		text2: "Красный",
 	},
 	{
-		title: "Дата рождения",
-		text: "21.07.1993",
+		text1: "Дата рождения",
+		text2: "21.07.1993",
 	},
 	{
-		title: "Электронный адрес",
-		text: "tsinovkin@mail.ru",
+		text1: "Электронный адрес",
+		text2: "tsinovkin@mail.ru",
 	},
 	{
-		title: "Телефон",
-		text: "+7 (777) 777-77-77",
+		text1: "Телефон",
+		text2: "+7 (777) 777-77-77",
 	},
 ];
 
-const ProfileWrapper = styled("div")`
-	max-width: 343px;
-	background: #ffffff;
-	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.03);
-	border-radius: 10px;
-	position: relative;
-	padding: 75px 12px 24px;
-	margin-bottom: 14px;
-	margin-top: 95px;
-`;
 const ProfileImage = styled("img")`
 	width: 110px;
 	height: 110px;
@@ -64,61 +52,56 @@ const ProfileImage = styled("img")`
 	left: 50%;
 	transform: translate(-50%, -50%);
 `;
-const ProfileTextWrapper = styled("div")`
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 12px;
-	padding: 0;
-`;
-type TextProps = {
-	fontWeight: number;
-	fontSize: string;
-	lineheight: string;
-	color: string;
-	margin?: string;
-};
-const ProfileText = styled("p")<TextProps>`
-	font-weight: ${(props) => props.fontWeight};
-	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineheight};
-	color: ${(props) => props.color};
-	margin: ${(props) => props.margin};
-`;
 
-const ProfileInfo = () => {
+const ProfileInfo: FC<ProfileInfoData> = () => {
 	const navigate = useNavigate();
 
 	const onNavigate = useCallback(() => {
 		navigate("edit");
-	}, []); // зависимость????
+	}, []);
 
 	return (
 		<>
-			<ProfileWrapper>
+			<Wrapper
+				maxWidth="343px"
+				bgcolor="#ffffff"
+				boxShadow="0px 0px 30px rgba(0, 0, 0, 0.03)"
+				borderRadius="10px"
+				position="relative"
+				padding="75px 12px 24px"
+				marginBottom="14px"
+				marginTop="95px"
+			>
 				<ProfileImage src={UserCardImage} />
-				{(userData as NewsTextProp[]).map((item, index) => (
-					<ProfileTextWrapper>
-						<ProfileText
+				{data.map((item, index) => (
+					<TextWrapper
+						display="flex"
+						justifyContent="space-between"
+						marginBottom="12px"
+						padding={0}
+						key={index + item.text1}
+					>
+						<Text
 							fontWeight={400}
 							fontSize={"14px"}
-							lineheight={"16px"}
+							lineHeight={"16px"}
 							color={"#848484"}
 							margin={"0"}
 						>
-							{item.title}
-						</ProfileText>
-						<ProfileText
+							{item.text1}
+						</Text>
+						<Text
 							fontWeight={700}
 							fontSize={"14px"}
-							lineheight={"16px"}
+							lineHeight={"16px"}
 							color={"#272727"}
 							margin={"0"}
 						>
-							{item.text}
-						</ProfileText>
-					</ProfileTextWrapper>
+							{item.text2}
+						</Text>
+					</TextWrapper>
 				))}
-			</ProfileWrapper>
+			</Wrapper>
 			<CustomButton
 				width={"100%"}
 				height={"54px"}

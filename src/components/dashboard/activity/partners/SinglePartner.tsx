@@ -1,7 +1,5 @@
-import { FC, useState, useCallback, useEffect } from "react";
-import { styled } from "@mui/material/styles";
+import { FC } from "react";
 import Divider from "@mui/material/Divider";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
 	LargeCardWrapper,
 	LargeCardImage,
@@ -9,46 +7,31 @@ import {
 	LargeCardText,
 } from "../../../custom/cards/LargeCard";
 import useBreakpoint from "use-breakpoint";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
 import { BackButton } from "../../../custom/BackButton";
+import { TextProps, CardProps, DataProps } from "../../../../types/types";
+import { Wrapper } from "../../../custom/defaultStyles";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
-type NewsTextProp = {
-	text1: string;
-	text2: string;
-};
-const data: NewsTextProp[] = [
+const data: TextProps[] = [
 	{
 		text1: "Degreen.kz",
 		text2: "Используйте промокод CheckMat2021 и получите скидку на фитнес набор для набора мышечной массы от нашего партнера Degreen.kz",
 	},
 ];
 
-const Wrapper = styled("div")`
-	max-width: 674px;
-`;
-
-type CardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: number;
-};
 const Card = ({ item, index }: CardProps) => {
-	const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-		BREAKPOINTS,
-		"desktop"
-	); ///// ПЕРЕРЕНДЕР ??????????
+	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
 
 	return (
 		<LargeCardWrapper
 			display={"flex"}
-			flex_direction={"column"}
-			justify_content={"center"}
+			flexDirection={"column"}
+			justifyContent={"center"}
 			width={"674px"}
-			background={"#FFFFFF"}
-			box_shadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
-			border_radius={"10px"}
+			bgcolor={"#FFFFFF"}
+			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
+			borderRadius={"10px"}
 			padding={
 				breakpoint === "mobile" ? "12px 12px 58px" : "16px 16px 24px"
 			}
@@ -59,7 +42,7 @@ const Card = ({ item, index }: CardProps) => {
 				<LargeCardText
 					fontWeight={700}
 					fontSize={"18px"}
-					lineheight={"wqpx"}
+					lineHeight={"wqpx"}
 					color={"#272727;"}
 					margin={"14px 0"}
 				>
@@ -69,7 +52,7 @@ const Card = ({ item, index }: CardProps) => {
 				<LargeCardText
 					fontWeight={400}
 					fontSize={"14px"}
-					lineheight={"21px"}
+					lineHeight={"21px"}
 					color={"#272727"}
 					margin={"14px 0 0"}
 				>
@@ -80,17 +63,12 @@ const Card = ({ item, index }: CardProps) => {
 	);
 };
 
-const SinglePartner = () => {
-	const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-		BREAKPOINTS,
-		"desktop"
-	);
-
+const SinglePartner: FC<DataProps> = () => {
 	return (
 		<>
 			<BackButton label={"Назад"} />
-			<Wrapper sx={{ marginBottom: "70px" }}>
-				{(data as NewsTextProp[]).map((item, index) => (
+			<Wrapper maxWidth="674px" marginBottom="70px">
+				{data.map((item, index) => (
 					<Card item={item} index={index} />
 				))}
 			</Wrapper>

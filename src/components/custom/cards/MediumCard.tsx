@@ -1,33 +1,10 @@
 import { FC } from "react";
 import { styled } from "@mui/material/styles";
-
+import { Box, Typography } from "@mui/material";
 import ItemImg from "../../../images/activity/competition_image.svg";
 
 // Card Wrapper
-type MediumCardWrapperProps = {
-	padding?: string;
-	border_radius?: string;
-	box_shadow?: string;
-	background?: string;
-	justify_content?: string;
-	flex_direction?: string;
-	display?: string;
-	width?: string;
-	margin?: string;
-	height?: string;
-};
-export const MediumCardWrapper = styled("div")<MediumCardWrapperProps>`
-	display: ${(props) => props.display};
-	flex-direction: ${(props) => props.flex_direction};
-	justify-content: ${(props) => props.justify_content};
-	max-width: ${(props) => props.width};
-	background: ${(props) => props.background};
-	box-shadow: ${(props) => props.box_shadow};
-	border-radius: ${(props) => props.border_radius};
-	padding: ${(props) => props.padding};
-	margin: ${(props) => props.margin};
-	height: ${(props) => props.height};
-`;
+export const MediumCardWrapper = styled(Box)``;
 
 // Card Image
 type MediumCardImageProps = {

@@ -1,28 +1,24 @@
-import { FC, useState, useCallback, useEffect, useRef } from "react";
-import { Container, Grid } from "@mui/material";
+import { FC, useRef } from "react";
+import { Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import CardItemImage from "../../../../images/activity/competition_image.svg";
 import { useDraggable } from "react-use-draggable-scroll";
 import useBreakpoint from "use-breakpoint";
-import { scrollStyles } from "../../../custom/styled";
+import { scrollStyles } from "../../../custom/defaultStyles";
 import {
 	MediumCardWrapper,
 	MediumCardImage,
 	MediumCardTextWrapper,
 	MediumCardText,
 } from "../../../custom/cards/MediumCard";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { ShowAllButton } from "../../../custom/ShowAllButton";
+import { TextProps, CardProps, DataProps } from "../../../../types/types";
+import { Wrapper, TitleWrapper, Title } from "../../../custom/defaultStyles";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
-type NewsTextProp = {
-	text1: string; // ?????????????????
-	text2: string; // ????????????
-};
-
-const competitionData: NewsTextProp[] = [
+const data: TextProps[] = [
 	{
 		text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)",
 		text2: "05 июня",
@@ -41,41 +37,6 @@ const competitionData: NewsTextProp[] = [
 	},
 ];
 
-const Wrapper = styled("div")`
-	margin-bottom: 34px;
-`;
-const TitleWrapper = styled("div")`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-`;
-type TitleProps = {
-	fontWeight: number;
-	fontSize: string;
-	lineheight: string;
-	color: string;
-	margin?: string;
-};
-const Title = styled("h3")<TitleProps>`
-	font-weight: ${(props) => props.fontWeight};
-	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineheight};
-	color: ${(props) => props.color};
-	margin-bottom: ${(props) => props.margin};
-`;
-const AllCompetitionText = styled("div")`
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 14px;
-	text-decoration-line: underline;
-	color: #2f80ed;
-`;
-const AllCompetitionTextWrapper = styled("div")`
-	a {
-		display: flex;
-		align-items: center;
-	}
-`;
 const CardsWrapper = styled("div")`
 	display: flex;
 	justify-content: space-between;
@@ -84,22 +45,17 @@ const CardsWrapper = styled("div")`
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 `;
-type CardProps = {
-	// ?????? ANY ?????????
-	item: any;
-	index: number;
-};
 
 const Card = ({ item, index }: CardProps) => {
 	return (
 		<MediumCardWrapper
 			display={"flex"}
-			flex_direction={"column"}
-			justify_content={"center"}
-			width={"252px"}
-			background={"#FFFFFF"}
-			box_shadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
-			border_radius={"10px"}
+			flexDirection={"column"}
+			justifyContent={"center"}
+			// width={"252px"}
+			bgcolor={"#FFFFFF"}
+			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
+			borderRadius={"10px"}
 			padding={"10px"}
 			margin={"0 20px 0 0"}
 			key={index}
@@ -110,7 +66,7 @@ const Card = ({ item, index }: CardProps) => {
 					fontWeight={700}
 					fontSize={"14px"}
 					lineheight={"16px"}
-					color={"#000000;"}
+					color={"#000000"}
 					margin={"6px 0 4px 0"}
 				>
 					<Link
@@ -133,7 +89,7 @@ const Card = ({ item, index }: CardProps) => {
 	);
 };
 
-const ScrollCards = () => {
+const ScrollCards: FC<DataProps> = () => {
 	const ref =
 		useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
 	const { events } = useDraggable(ref);
@@ -151,56 +107,48 @@ const ScrollCards = () => {
 				}),
 			]}
 		>
-			{(competitionData as NewsTextProp[]).map((item, index) => (
+			{data.map((item, index) => (
 				<Card item={item} index={index} key={item.text1 + index} />
 			))}
 		</CardsWrapper>
 	);
 };
 
-const Competition = (): JSX.Element => {
-	const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-		BREAKPOINTS,
-		"desktop"
-	);
+const Competition: FC<DataProps> = () => {
+	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
 
 	return (
-		<Wrapper>
-			<TitleWrapper>
+		<Wrapper marginBottom="34px">
+			<TitleWrapper
+				display="flex"
+				justifyContent="space-between"
+				alignItems="center"
+			>
 				<Title
 					fontWeight={700}
 					fontSize={"14px"}
-					lineheight={"16px"}
-					color={"#000000;"}
-					margin={"24px"}
+					lineHeight={"16px"}
+					color={"#000000"}
+					margin={"0 0 24px 0"}
 				>
 					Соревнования
 				</Title>
-				<AllCompetitionTextWrapper>
-					<Link to="competitions">
-						<AllCompetitionText>Посмотреть все</AllCompetitionText>
-						<ArrowForwardIcon
-							sx={{
-								width: "20px",
-								height: "12px",
-								color: "#2F80ED",
-							}}
-						/>
-					</Link>
-				</AllCompetitionTextWrapper>
+				<ShowAllButton
+					label="Посмотреть все"
+					to="competitions"
+					margin="0 0 24px 0"
+				/>
 			</TitleWrapper>
 			{breakpoint === "mobile" ? (
 				<ScrollCards />
 			) : (
 				<Grid container columns={12}>
 					<Grid container item spacing={2} xs={11.5}>
-						{(competitionData as NewsTextProp[]).map(
-							(item, index) => (
-								<Grid item sm={6} md={6} lg={3} key={index}>
-									{<Card item={item} index={index} />}
-								</Grid>
-							)
-						)}
+						{data.map((item, index) => (
+							<Grid item sm={6} md={6} lg={3} key={index}>
+								{<Card item={item} index={index} />}
+							</Grid>
+						))}
 					</Grid>
 				</Grid>
 			)}

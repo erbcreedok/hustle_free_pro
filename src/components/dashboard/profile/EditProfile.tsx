@@ -1,11 +1,4 @@
-import {
-	FC,
-	ReactElement,
-	useState,
-	useCallback,
-	useEffect,
-	forwardRef,
-} from "react";
+import { useState } from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { TextField, FormControl, Grid, InputLabel } from "@mui/material";
@@ -15,12 +8,12 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { styled } from "@mui/material/styles";
 import { CustomButton } from "../../../components/custom/Button";
 import { getFieldState } from "../../../utils/getFieldState";
-import UserCardImage from "../../../images/GreetingCard/user_card_image.png";
 import UserDefaultImage from "../../../images/GreetingCard/profile_default_image.png";
-// import { defaultProfileImage } from "../../../images/GreetingCard/defaultProfileImage";
-import NumberFormat from "react-number-format";
-import { CssProfileInput, CssProfileFilledInput } from "../../custom/styled";
-import { AnyNsRecord } from "dns";
+import {
+	CssProfileInput,
+	CssProfileFilledInput,
+	Wrapper,
+} from "../../custom/defaultStyles";
 
 type IFormInputs = {
 	login: string;
@@ -99,16 +92,6 @@ const userData: NewsTextProp[] = [
 	},
 ];
 
-const Wrapper = styled("div")`
-	max-width: 674px;
-	padding: 69px 12px 12px;
-	position: relative;
-	background: #ffffff;
-	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.03);
-	border-radius: 10px;
-	margin: 90px 0 24px 0;
-`;
-
 const UserImage = styled("img")`
 	width: 110px;
 	height: 110px;
@@ -156,17 +139,16 @@ const EditProfile = () => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<Wrapper>
-				<div
-					style={
-						{
-							// position: "absolute",
-							// top: 0,
-							// left: "50%",
-							// transform: " translate(-50%, -50%)",
-						}
-					}
-				>
+			<Wrapper
+				maxWidth="674px"
+				padding="69px 12px 12px"
+				position="relative"
+				bgcolor="#ffffff"
+				boxShadow="0px 0px 30px rgba(0, 0, 0, 0.03)"
+				borderRadius="10px"
+				margin="90px 0 24px 0"
+			>
+				<div>
 					<ImageUploading
 						multiple={false}
 						value={images}
@@ -182,23 +164,7 @@ const EditProfile = () => {
 							isDragging,
 							dragProps,
 						}) => (
-							// write your building UI
 							<div className="upload__image-wrapper">
-								{/* <button
-									style={
-										isDragging
-											? { color: "red" }
-											: undefined
-									}
-									onClick={onImageUpload}
-									{...dragProps}
-								>
-									Click or Drop here
-								</button>
-								&nbsp;
-								<button onClick={onImageRemoveAll}>
-									Remove all images
-								</button> */}
 								{imageList.map((image, index) => (
 									<div key={index} className="image-item">
 										<UserImage src={image.dataURL} />
@@ -227,14 +193,6 @@ const EditProfile = () => {
 											>
 												<PhotoCamera />
 											</IconButton>
-											{/* <button>Update</button> */}
-											{/* <button
-												onClick={() =>
-													onImageRemove(index)
-												}
-											>
-												Remove
-											</button> */}
 										</div>
 									</div>
 								))}
@@ -278,7 +236,6 @@ const EditProfile = () => {
 													: "standard"
 											}
 											id="component-simple"
-											// label={item.title}
 											sx={[
 												CssProfileInput,
 												CssProfileFilledInput,

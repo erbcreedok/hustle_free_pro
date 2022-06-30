@@ -1,17 +1,10 @@
-import { FC, useState, useCallback, useEffect } from "react";
+import { FC } from "react";
 import { styled } from "@mui/material/styles";
-import CardImage from "../../../../images/activity/single_partner.png";
-import Divider from "@mui/material/Divider";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Routes, Route, Link, Outlet, useNavigate } from "react-router-dom";
 import { BackButton } from "../../custom/BackButton";
+import { PaymentTextProps, PaymentDataProps } from "../../../types/types";
+import { Wrapper, Title } from "../../custom/defaultStyles";
 
-type NewsTextProp = {
-	title: string;
-	definition: string;
-};
-
-const paymentData: NewsTextProp[] = [
+const paymentData: PaymentTextProps[] = [
 	{
 		title: "Перевод на Kaspi счет",
 		definition:
@@ -22,22 +15,7 @@ const paymentData: NewsTextProp[] = [
 		definition: "Оплатить можно по номеру счета KZ8181818818818181",
 	},
 ];
-
-const Wrapper = styled("div")`
-	max-width: 674px;
-	background: #ffffff;
-	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.03);
-	border-radius: 10px;
-	padding: 16px 15.63px;
-`;
-const Title = styled("h3")`
-	font-weight: 700;
-	font-size: 18px;
-	line-height: 21px;
-	color: #000000;
-	margin: 0 0 14px 0;
-`;
-const SubTitle = styled("p")`
+const SubTitle = styled(Title)`
 	margin: 14px 0 20px 0;
 	font-size: 16px;
 `;
@@ -65,17 +43,31 @@ const OL = styled("ol")`
 	font-weight: bold;
 `;
 
-const WorkoutPayment = () => {
+const WorkoutPayment: FC<PaymentDataProps> = () => {
 	return (
 		<>
 			<BackButton label={"Назад"} />
 
-			<Wrapper>
-				<Title>Как оплатить тренировки?</Title>
+			<Wrapper
+				maxWidth="674px"
+				bgcolor="#ffffff"
+				boxShadow="0px 0px 30px rgba(0, 0, 0, 0.03)"
+				borderRadius="10px"
+				padding="16px 15.63px"
+			>
+				<Title
+					fontWeight={700}
+					fontSize="18px"
+					lineHeight="21px"
+					color="#000000"
+					margin="0 0 14px 0"
+				>
+					Как оплатить тренировки?
+				</Title>
 				<SubTitle>Оплатить тренировки можно тремя способами:</SubTitle>
 				<OL>
 					<DL>
-						{(paymentData as NewsTextProp[]).map((item, index) => (
+						{paymentData.map((item, index) => (
 							<>
 								<li>
 									<DT>{item.title}</DT>

@@ -2,23 +2,14 @@ import SignInTop from "../components/singIn/SignInTop";
 import SignInForm from "../components/singIn/SignInForm";
 import SignInBottom from "../components/singIn/SignInBottom";
 import Container from "@mui/material/Container";
-import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
 import TopBar from "../components/bar/TopBar";
 import useBreakpoint from "use-breakpoint";
+import { Wrapper } from "../components/custom/defaultStyles";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
-const SignInWrapper = styled("div")`
-	max-width: 343px;
-`;
-
 const SignIn = () => {
-	const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-		BREAKPOINTS,
-		"desktop"
-	);
+	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
 
 	return (
 		<>
@@ -33,15 +24,11 @@ const SignIn = () => {
 					},
 				]}
 			>
-				<SignInWrapper
-					sx={{
-						margin: "0 auto",
-					}}
-				>
+				<Wrapper margin="0 auto" maxWidth="343px">
 					<SignInTop />
 					<SignInForm />
 					<SignInBottom />
-				</SignInWrapper>
+				</Wrapper>
 			</Container>
 		</>
 	);

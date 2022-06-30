@@ -1,7 +1,4 @@
-import { FC, ReactElement, useState, useCallback, useEffect } from "react";
-import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
-import { Button } from "@mui/material";
 
 import { ReactComponent as HomeIcon } from "../../../images/icons/dashboard/home.svg";
 import { ReactComponent as ChartIcon } from "../../../images/icons/dashboard/chart.svg";
@@ -9,16 +6,13 @@ import { ReactComponent as CalendarIcon } from "../../../images/icons/dashboard/
 import { ReactComponent as BagIcon } from "../../../images/icons/dashboard/shop.svg";
 import { ReactComponent as UserIcon } from "../../../images/icons/dashboard/profile.svg";
 import { Routes, Route, Link, Outlet, NavLink } from "react-router-dom";
+import { NavProps } from "../../../types/types";
 
-type ItemProps = {
-	value: string;
-	name: string;
-	icon?: ReactElement;
-};
 const Icon = styled("svg")`
 	margin-right: 14px;
 `;
-const menuData: ItemProps[] = [
+
+const data: NavProps[] = [
 	{
 		name: "home",
 		value: "Главная",
@@ -48,9 +42,6 @@ const menuData: ItemProps[] = [
 
 const SideBarWrapper = styled("div")`
 	width: 297px;
-	/* @media (max-width: 768px) {
-    display: "none";
-  } */
 `;
 const Ul = styled("ul")`
 	list-style-type: none;
@@ -79,7 +70,7 @@ const Li = styled("li")`
 	padding: 30px 0;
 `;
 
-function renderItems(items: ItemProps[]) {
+function renderItems(items: NavProps[]) {
 	const item = items.map((item) => {
 		return (
 			<Li key={item.value}>
@@ -99,7 +90,7 @@ function renderItems(items: ItemProps[]) {
 }
 
 const SideBar = () => {
-	const items = renderItems(menuData);
+	const items = renderItems(data);
 
 	return (
 		<SideBarWrapper

@@ -1,33 +1,10 @@
 import { FC } from "react";
 import { styled } from "@mui/material/styles";
-
+import { Box, Typography } from "@mui/material";
 import ItemImg from "../../../images/activity/single_competition.png";
 
 // Card Wrapper
-type LargeCardWrapperProps = {
-	padding?: string;
-	border_radius?: string;
-	box_shadow?: string;
-	background?: string;
-	justify_content?: string;
-	flex_direction?: string;
-	display?: string;
-	width?: string;
-	margin?: string;
-	height?: string;
-};
-export const LargeCardWrapper = styled("div")<LargeCardWrapperProps>`
-	display: ${(props) => props.display};
-	flex-direction: ${(props) => props.flex_direction};
-	justify-content: ${(props) => props.justify_content};
-	max-width: ${(props) => props.width};
-	background: ${(props) => props.background};
-	box-shadow: ${(props) => props.box_shadow};
-	border-radius: ${(props) => props.border_radius};
-	padding: ${(props) => props.padding};
-	margin: ${(props) => props.margin};
-	height: ${(props) => props.height};
-`;
+export const LargeCardWrapper = styled(Box)``;
 
 // Card Image
 type LargeCardImageProps = {
@@ -59,20 +36,7 @@ export const LargeCardImage: FC<LargeCardImageProps> = ({
 };
 
 // Text Wrapper
-export const LargeCardTextWrapper = styled("div")``;
+export const LargeCardTextWrapper = styled(Box)``;
 
 // Top Text
-type LargeCardTextProps = {
-	fontWeight?: number;
-	fontSize?: string;
-	lineheight?: string;
-	color?: string;
-	margin?: string;
-};
-export const LargeCardText = styled("div")<LargeCardTextProps>`
-	font-weight: ${(props) => props.fontWeight};
-	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineheight};
-	color: ${(props) => props.color};
-	margin: ${(props) => props.margin};
-`;
+export const LargeCardText = styled(Typography)``;

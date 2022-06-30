@@ -1,4 +1,4 @@
-import { useState, Fragment, SyntheticEvent, ReactElement } from "react";
+import { useState, SyntheticEvent, ReactElement } from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { styled } from "@mui/material/styles";
@@ -7,19 +7,15 @@ import { ReactComponent as ChartIcon } from "../../../images/icons/dashboard/cha
 import { ReactComponent as CalendarIcon } from "../../../images/icons/dashboard/calendar.svg";
 import { ReactComponent as ShopIcon } from "../../../images/icons/dashboard/shop.svg";
 import { ReactComponent as ProfileIcon } from "../../../images/icons/dashboard/profile.svg";
-import { Routes, Route, Link, Outlet, NavLink } from "react-router-dom";
-
-type ItemProps = {
-	name: string;
-	value: string;
-	icon?: ReactElement;
-};
+import { NavLink } from "react-router-dom";
+import { BottomNavDefaultStyles } from "../../custom/defaultStyles";
+import { NavProps } from "../../../types/types";
 
 const Icon = styled("svg")`
 	margin-bottom: 4px;
 `;
 
-const menuData: ItemProps[] = [
+const data: NavProps[] = [
 	{
 		name: "home",
 		value: "Главная",
@@ -57,42 +53,11 @@ export default function BottomNav() {
 	return (
 		<BottomNavigation
 			showLabels
-			sx={{
-				width: "100%",
-				position: "fixed",
-				bottom: 0,
-				zIndex: 1000,
-				padding: "0px 16px",
-				"@media (min-width: 769px)": {
-					display: "none",
-				},
-				"&.MuiBottomNavigation-root .MuiButtonBase-root": {
-					minWidth: "unset",
-				},
-				"&.MuiBottomNavigation-root a": {
-					textDecoration: "unset",
-				},
-				"&.MuiBottomNavigation-root .active button, &.MuiBottomNavigation-root .active span":
-					{
-						color: "#6D4EEA",
-					},
-				"& .MuiBottomNavigationAction-label": {
-					fontFamily: "Raleway",
-					fontSize: "10px",
-					fontWeight: 400,
-					lineHeight: "12px",
-					opacity: "unset",
-					marginTop: "4px",
-					color: "#848484",
-				},
-				"& .MuiBottomNavigationAction-label.Mui-selected": {
-					color: "#6D4EEA",
-				},
-			}}
+			sx={[BottomNavDefaultStyles]}
 			value={value}
 			onChange={handleChange}
 		>
-			{menuData.map((item) => (
+			{data.map((item) => (
 				<NavLink
 					style={({ isActive }) =>
 						isActive ? { color: "#6D4EEA" } : {}

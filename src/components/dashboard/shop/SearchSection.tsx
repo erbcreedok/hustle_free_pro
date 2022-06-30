@@ -1,19 +1,6 @@
 import { styled } from "@mui/material/styles";
+import { Title } from "../../custom/defaultStyles";
 
-type TitleProps = {
-	fontWeight: number;
-	fontSize: string;
-	lineheight: string;
-	color: string;
-	margin?: string;
-};
-const Title = styled("h3")<TitleProps>`
-	font-weight: ${(props) => props.fontWeight};
-	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineheight};
-	color: ${(props) => props.color};
-	margin-bottom: ${(props) => props.margin};
-`;
 const SearchInput = styled("input")`
 	width: 100%;
 	height: 43px;
@@ -37,9 +24,9 @@ const SearchSection = () => {
 			<Title
 				fontWeight={400}
 				fontSize={"14px"}
-				lineheight={"16px"}
+				lineHeight={"16px"}
 				color={"#272727;"}
-				margin={"34px"}
+				margin={"34px 0"}
 			>
 				По вашему запросу найдено <b>10</b> товаров
 			</Title>

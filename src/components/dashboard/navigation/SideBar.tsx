@@ -1,29 +1,8 @@
 import { styled } from "@mui/material/styles";
-
-import { ReactComponent as HomeIcon } from "../../../images/icons/dashboard/home.svg";
-import { ReactComponent as ChartIcon } from "../../../images/icons/dashboard/chart.svg";
-import { ReactComponent as CalendarIcon } from "../../../images/icons/dashboard/calendar.svg";
-import { ReactComponent as BagIcon } from "../../../images/icons/dashboard/shop.svg";
-import { ReactComponent as UserIcon } from "../../../images/icons/dashboard/profile.svg";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useHttp } from "../../../services/useHttp";
-import { useEffect } from "react";
-import { fetchData } from "../../../store/sidebarActions";
+import { SidebarTypes } from "../../../types/types";
 import { useSelector } from "react-redux";
-import { SidebarTypes, IconMapTypes } from "../../../types/types";
-
-const Icon = styled("svg")`
-	margin-right: 14px;
-`;
-
-const iconMap: IconMapTypes = {
-	HomeIcon: <Icon as={HomeIcon} />,
-	ChartIcon: <Icon as={ChartIcon} />,
-	CalendarIcon: <Icon as={CalendarIcon} />,
-	BagIcon: <Icon as={BagIcon} />,
-	UserIcon: <Icon as={UserIcon} />,
-};
+import { iconMap } from "../../custom/NavigationIcons";
 
 const SideBarWrapper = styled("div")`
 	width: 297px;
@@ -59,11 +38,6 @@ const SideBar = () => {
 	const { sidebarData }: { sidebarData: SidebarTypes[] } = useSelector(
 		(state: any) => state.sidebar
 	);
-	const dispatch: any = useDispatch();
-	const { request } = useHttp();
-	useEffect(() => {
-		dispatch(fetchData(request));
-	}, []);
 
 	return (
 		<SideBarWrapper

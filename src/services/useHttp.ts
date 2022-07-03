@@ -10,11 +10,13 @@ const _api = axios.create({
 	},
 });
 
-export const useHttp = () => {
+export type Request<T = unknown> = () => Promise<T>;
+
+export const useHttp = <T = unknown>() => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 
-	const request = async (url: string) => {
+	const request: Request<T> = useCallback(async () => {
 		setLoading(true);
 
 		try {
@@ -29,7 +31,7 @@ export const useHttp = () => {
 			console.log(e.message);
 			throw e;
 		}
-	};
+	}, []);
 
 	const clearError = useCallback(() => setError(null), []);
 

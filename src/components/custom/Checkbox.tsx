@@ -1,12 +1,4 @@
-import {
-	ChangeEvent,
-	ChangeEventHandler,
-	ComponentProps,
-	forwardRef,
-	ReactElement,
-	useState,
-} from "react";
-import React, { FC } from "react";
+import { ComponentProps, forwardRef, ReactElement } from "react";
 import styled from "@emotion/styled";
 
 type CheckedProps = {

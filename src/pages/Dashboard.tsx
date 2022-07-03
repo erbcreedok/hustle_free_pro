@@ -6,8 +6,13 @@ import SideBar from "../components/dashboard/navigation/SideBar";
 import useBreakpoint from "use-breakpoint";
 import TopBar from "../components/bar/TopBar";
 import { Box } from "@mui/material";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import ProgressCircular from "../components/custom/ProgressCircular";
+import { useHttp } from "../services/useHttp";
+import { useDispatch } from "react-redux";
+import { fetchData } from "../store/sidebarActions";
+import { SidebarTypes } from "../types/types";
+import { Dispatch } from "../store";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
@@ -22,10 +27,12 @@ const DashContentSection = styled(Box)`
 `;
 
 const Dashboard = () => {
-	const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-		BREAKPOINTS,
-		"desktop"
-	);
+	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
+	const dispatch: Dispatch = useDispatch();
+	const { request } = useHttp<SidebarTypes>();
+	useEffect(() => {
+		dispatch(fetchData(request));
+	}, [dispatch, request]);
 
 	return (
 		<>

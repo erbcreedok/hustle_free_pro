@@ -1,8 +1,12 @@
+import { Dispatch } from ".";
 import { dataFetching, dataFetched, dataFetchingError } from "./sidebarSlice";
 
-export const fetchData = (request: any) => (dispatch: any) => {
-	dispatch(dataFetching());
-	request()
-		.then((data: any) => dispatch(dataFetched(data)))
-		.catch(() => dispatch(dataFetchingError()));
-};
+type Request<R = unknown> = () => Promise<R>;
+export const fetchData =
+	<R = unknown>(request: Request<R>) =>
+	(dispatch: Dispatch) => {
+		dispatch(dataFetching());
+		request()
+			.then((data) => dispatch(dataFetched(data)))
+			.catch(() => dispatch(dataFetchingError()));
+	};

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
-import ItemImg from "../../../images/activity/competition_image.svg";
+import ItemImg from "../../../utils/images/activity/competition_image.svg";
 
 // Card Wrapper
 export const MediumCardWrapper = styled(Box)``;

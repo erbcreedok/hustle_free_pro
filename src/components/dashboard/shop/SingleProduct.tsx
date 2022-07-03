@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import CardImage from "../../../images/activity/single_partner.png";
+import CardImage from "../../../utils/images/activity/single_partner.png";
 import Divider from "@mui/material/Divider";
 import { CustomButton } from "../../custom/Button";
 import useBreakpoint from "use-breakpoint";

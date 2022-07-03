@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
-import logOutIcon from "../../images/icons/logoutIcon.svg";
+import logOutIcon from "../../utils/images/icons/logoutIcon.svg";
 import Container from "@mui/material/Container";
 
 const Icon = styled("img")`

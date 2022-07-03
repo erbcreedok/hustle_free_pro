@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { FC, useCallback } from "react";
 import { styled } from "@mui/material/styles";
-import UserCardImage from "../../../images/GreetingCard/user_card_image.png";
+import UserCardImage from "../../../utils/images/GreetingCard/user_card_image.png";
 import { CustomButton } from "../../../components/custom/Button";
 import { TextProps, ProfileInfoData } from "../../../types/types";
 import { Wrapper, TextWrapper, Text } from "../../custom/defaultStyles";

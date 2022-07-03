@@ -8,7 +8,7 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { styled } from "@mui/material/styles";
 import { CustomButton } from "../../../components/custom/Button";
 import { getFieldState } from "../../../utils/getFieldState";
-import UserDefaultImage from "../../../images/GreetingCard/profile_default_image.png";
+import UserDefaultImage from "../../../utils/images/GreetingCard/profile_default_image.png";
 import {
 	CssProfileInput,
 	CssProfileFilledInput,

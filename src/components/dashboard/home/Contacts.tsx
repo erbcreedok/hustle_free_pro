@@ -1,12 +1,12 @@
 import { styled } from "@mui/material/styles";
-import CardImage from "../../../images/home/contacts_image.svg";
+import CardImage from "../../../utils/images/home/contacts_image.svg";
 import useBreakpoint from "use-breakpoint";
 
-import { ReactComponent as FacebookIcon } from "../../../images/icons/contacts/facebook.svg";
-import { ReactComponent as InstagramIcon } from "../../../images/icons/contacts/instagram.svg";
-import { ReactComponent as YoutubeIcon } from "../../../images/icons/contacts/youtube.svg";
-import { ReactComponent as VkIcon } from "../../../images/icons/contacts/vk.svg";
-import { ReactComponent as WhatsAppIcon } from "../../../images/icons/contacts/whatsapp.svg";
+import { ReactComponent as FacebookIcon } from "../../../utils/images/icons/contacts/facebook.svg";
+import { ReactComponent as InstagramIcon } from "../../../utils/images/icons/contacts/instagram.svg";
+import { ReactComponent as YoutubeIcon } from "../../../utils/images/icons/contacts/youtube.svg";
+import { ReactComponent as VkIcon } from "../../../utils/images/icons/contacts/vk.svg";
+import { ReactComponent as WhatsAppIcon } from "../../../utils/images/icons/contacts/whatsapp.svg";
 import { BackButton } from "../../custom/BackButton";
 import { ContactsTextProps } from "../../../types/types";
 import { Wrapper, Title } from "../../custom/defaultStyles";

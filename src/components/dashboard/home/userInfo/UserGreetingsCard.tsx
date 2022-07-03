@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
-import UserCardImage from "../../../../images/GreetingCard/user_card_image.png";
+import UserCardImage from "../../../../utils/images/GreetingCard/user_card_image.png";
 import { TextProps, DataProps } from "../../../../types/types";
 
 const data: TextProps[] = [

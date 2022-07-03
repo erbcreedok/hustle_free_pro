@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { styled } from "@mui/material/styles";
-import ItemImg from "../../../images/activity/partner_image.png";
+import ItemImg from "../../../utils/images/activity/partner_image.png";
 import { Box, Typography } from "@mui/material";
 
 // Card Wrapper

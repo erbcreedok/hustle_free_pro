@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
 import BottomNav from "../components/dashboard/navigation/BottomNav";
@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { fetchData } from "../store/sidebarActions";
 import { SidebarTypes } from "../types/types";
 import { Dispatch } from "../store";
+import Breadcrumbs from "../components/dashboard/BreadcrumbsComponent";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
@@ -30,6 +31,12 @@ const Dashboard = () => {
 	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
 	const dispatch: Dispatch = useDispatch();
 	const { request } = useHttp<SidebarTypes>();
+	const location = useLocation();
+	const pathnames = location.pathname
+		.split("/")
+		.filter((x) => x)
+		.join("/");
+
 	useEffect(() => {
 		dispatch(fetchData(request));
 	}, [dispatch, request]);
@@ -46,6 +53,7 @@ const Dashboard = () => {
 					)}
 					<Suspense fallback={<ProgressCircular height="50vh" />}>
 						<DashContentSection>
+							{pathnames !== "dashboard/home" && <Breadcrumbs />}
 							<Outlet />
 						</DashContentSection>
 					</Suspense>

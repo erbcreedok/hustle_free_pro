@@ -183,3 +183,10 @@ export const muiSelectDefaultStyles = () => ({
 		color: " #272727",
 	},
 });
+
+export const breadcrumbsDefaultStyles = () => ({
+	fontWeight: 400,
+	fontSize: "14px",
+	lineHeight: "16px",
+	color: "#848484",
+});

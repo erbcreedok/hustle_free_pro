@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { fetchData } from "../store/sidebarActions";
 import { SidebarTypes } from "../types/types";
 import { Dispatch } from "../store";
-import Breadcrumbs from "../components/dashboard/BreadcrumbsComponent";
+import Breadcrumbs from "../components/custom/BreadcrumbsComponent";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 

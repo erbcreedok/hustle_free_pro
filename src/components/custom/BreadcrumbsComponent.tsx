@@ -2,7 +2,7 @@ import React from "react";
 import { Breadcrumbs, Link, Typography } from "@mui/material";
 import { LinkProps } from "@mui/material/Link";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-import { breadcrumbsDefaultStyles } from "../custom/defaultStyles";
+import { breadcrumbsDefaultStyles } from "./defaultStyles";
 
 const breadcrumbNameMap: { [key: string]: string } = {
 	"/dashboard/home/news": "Новости",

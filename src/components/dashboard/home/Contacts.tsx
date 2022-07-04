@@ -20,25 +20,21 @@ const Icon = styled("svg")`
 `;
 const data: ContactsTextProps[] = [
 	{
+		id: 1,
 		title: "Адрес",
 		text: "ЖК Арай​Жарокова, 137 блок В2 ​цокольный этаж",
 	},
+	{ id: 2, title: "Почта", text: "​info@cheсkmat.kz" },
+	{ id: 3, title: "Телефон", text: "+7‒701‒584‒47‒77" },
 	{
-		title: "Почта",
-		text: "​info@cheсkmat.kz",
-	},
-	{
-		title: "Телефон",
-		text: "+7‒701‒584‒47‒77",
-	},
-	{
+		id: 4,
 		title: "Соц. сети",
 		icons: [
-			{ name: "facebook", icon: <Icon as={FacebookIcon} /> },
-			{ name: "instagram", icon: <Icon as={InstagramIcon} /> },
-			{ name: "youtube", icon: <Icon as={YoutubeIcon} /> },
-			{ name: "vk", icon: <Icon as={VkIcon} /> },
-			{ name: "whatsapp", icon: <Icon as={WhatsAppIcon} /> },
+			{ name: "facebook", icon: <Icon as={FacebookIcon} key={11} /> },
+			{ name: "instagram", icon: <Icon as={InstagramIcon} key={22} /> },
+			{ name: "youtube", icon: <Icon as={YoutubeIcon} key={33} /> },
+			{ name: "vk", icon: <Icon as={VkIcon} key={44} /> },
+			{ name: "whatsapp", icon: <Icon as={WhatsAppIcon} key={55} /> },
 		],
 	},
 ];

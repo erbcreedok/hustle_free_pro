@@ -14,6 +14,7 @@ const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
 const data: TextProps[] = [
 	{
+		id: 1,
 		text1: "24.01.2021",
 		text2: "Клубные карты уже доступны в продаже",
 		text3: "Arcu hendrerit iaculis himenaeos senectus orci justo, tristique hac conubia erat libero. Ornare dapibus tellus finibus ullamcorper vehicula dis parturient, suscipit praesent aliquam lacinia donec condimentum luctus, imperdiet auctor facilisi enim odio risus. Facilisi auctor eu finibus at cubilia quis venenatis, sed dui sociosqu justo iaculis facilisis molestie vulputate, nullam inceptos elementum pretium amet tincidunt. Felis pellentesque fames venenatis accumsan ullamcorper potenti feugiat ornare aliquet, orci at tristique dolor ultricies maecenas vulputate rhoncus dui mattis, sodales molestie consequat finibus vehicula per montes vitae.",
@@ -32,7 +33,6 @@ const Card = ({ item, index }: CardProps) => {
 			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
 			borderRadius={"10px"}
 			padding={breakpoint === "mobile" ? "12px" : "16px"}
-			key={index}
 		>
 			<LargeCardImage border_radius={"10px"} width={"100%"} />
 			<LargeCardTextWrapper>
@@ -73,7 +73,7 @@ const SingleNews: FC<DataProps> = () => {
 			<BackButton label={"Назад"} />
 			<Wrapper maxWidth="674px" marginBottom="70px">
 				{data.map((item, index) => (
-					<Card item={item} index={index} key={index} />
+					<Card item={item} index={index} key={item.id} />
 				))}
 			</Wrapper>
 		</>

@@ -13,37 +13,28 @@ type IFormInputs = {
 	raiting: string;
 };
 
-type NewsTextProp = {
+type TextProps = {
+	id: number;
 	title: string;
 	form_name: keyof IFormInputs;
 	type: string;
 };
-const data: NewsTextProp[] = [
+const data: TextProps[] = [
 	{
+		id: 1,
 		title: "Дата соревнования",
 		form_name: "competition_date",
 		type: "input",
 	},
 	{
+		id: 2,
 		title: "Название соревнования",
 		form_name: "competition_name",
 		type: "input",
 	},
-	{
-		title: "Описание",
-		form_name: "description",
-		type: "input",
-	},
-	{
-		title: "Результат",
-		form_name: "result",
-		type: "select",
-	},
-	{
-		title: "Рейтинг",
-		form_name: "raiting",
-		type: "text",
-	},
+	{ id: 3, title: "Описание", form_name: "description", type: "input" },
+	{ id: 4, title: "Результат", form_name: "result", type: "select" },
+	{ id: 5, title: "Рейтинг", form_name: "raiting", type: "text" },
 ];
 
 const FormWrapper = styled("div")`
@@ -77,7 +68,7 @@ const AddResult = () => {
 			>
 				{data.map((item, index) => (
 					<FormWrapper
-						key={index}
+						key={item.id}
 						sx={[item.form_name === "raiting" && { margin: 0 }]}
 					>
 						<InputLabel
@@ -91,7 +82,6 @@ const AddResult = () => {
 							{item.title}
 						</InputLabel>
 						<Controller
-							key={index}
 							name={item.form_name}
 							control={control}
 							rules={{ required: true }}

@@ -11,16 +11,19 @@ import { Wrapper, TitleWrapper, Text } from "../../custom/defaultStyles";
 
 const data: TextProps[] = [
 	{
+		id: 1,
 		text1: "21.02.2021",
 		text2: "Чемпионата и Первенства Казахстана по киокушинкай",
 		text3: "Результат: 1 место / Баллы: 20",
 	},
 	{
+		id: 2,
 		text1: "21.02.2021",
 		text2: "Чемпионата и Первенства Казахстана по киокушинкай",
 		text3: "Результат: 1 место / Баллы: 20",
 	},
 	{
+		id: 3,
 		text1: "21.02.2021",
 		text2: "Чемпионата и Первенства Казахстана по киокушинкай",
 		text3: "Результат: 1 место / Баллы: 20",
@@ -39,7 +42,6 @@ const Card = ({ item, index }: CardProps) => {
 			borderRadius={"10px"}
 			padding={"12px"}
 			margin={"0 0 14px 0"}
-			key={index}
 		>
 			<MiniCardTextWrapper>
 				<MiniCardText
@@ -107,7 +109,7 @@ const Results: FC<DataProps> = () => {
 				</Text>
 			</TitleWrapper>
 			{data.map((item, index) => (
-				<Card item={item} index={index} key={index + item.text1} />
+				<Card item={item} index={index} key={item.id} />
 			))}
 			<CustomButton
 				width={"100%"}

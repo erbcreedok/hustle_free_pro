@@ -6,11 +6,13 @@ import { Wrapper, Title } from "../../custom/defaultStyles";
 
 const paymentData: PaymentTextProps[] = [
 	{
+		id: 1,
 		title: "Перевод на Kaspi счет",
 		definition:
 			"Перевети деньги можно по номеру телефона +7 (777) 777-77-77",
 	},
 	{
+		id: 2,
 		title: "Оплата безналичным путем для ЮР.лиц",
 		definition: "Оплатить можно по номеру счета KZ8181818818818181",
 	},
@@ -68,7 +70,7 @@ const WorkoutPayment: FC<PaymentDataProps> = () => {
 				<OL>
 					<DL>
 						{paymentData.map((item, index) => (
-							<li key={index}>
+							<li key={item.id}>
 								<DT>{item.title}</DT>
 								<DD>{item.definition}</DD>
 							</li>

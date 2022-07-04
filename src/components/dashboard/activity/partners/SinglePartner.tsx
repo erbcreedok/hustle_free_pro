@@ -15,6 +15,7 @@ const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
 const data: TextProps[] = [
 	{
+		id: 1,
 		text1: "Degreen.kz",
 		text2: "Используйте промокод CheckMat2021 и получите скидку на фитнес набор для набора мышечной массы от нашего партнера Degreen.kz",
 	},
@@ -34,7 +35,6 @@ const Card = ({ item, index }: CardProps) => {
 			padding={
 				breakpoint === "mobile" ? "12px 12px 58px" : "16px 16px 24px"
 			}
-			key={index}
 		>
 			<LargeCardImage border_radius={"10px"} width={"100%"} />
 			<LargeCardTextWrapper>
@@ -68,7 +68,7 @@ const SinglePartner: FC<DataProps> = () => {
 			<BackButton label={"Назад"} />
 			<Wrapper maxWidth="674px" marginBottom="70px">
 				{data.map((item, index) => (
-					<Card item={item} index={index} key={index} />
+					<Card item={item} index={index} key={item.id} />
 				))}
 			</Wrapper>
 		</>

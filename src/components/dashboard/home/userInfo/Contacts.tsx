@@ -11,11 +11,13 @@ import { Wrapper } from "../../../custom/defaultStyles";
 
 const data: TextProps[] = [
 	{
+		id: 1,
 		text1: "Как оплатить тренировки?",
 		text2: "Информация о стоимости и способах оплаты тренировок",
 		link: "payment",
 	},
 	{
+		id: 2,
 		text1: "Контакты ",
 		text2: "Мкр. Самал, д. 2/3, 3 этаж, +7 (777) 777-77-77",
 		link: "contacts",
@@ -33,7 +35,6 @@ const Card = ({ item, index }: CardProps) => {
 			padding={"14px 16px"}
 			alignItems={"center"}
 			margin={"0 0 14px 0"}
-			key={index}
 		>
 			<MiniCardTextWrapper>
 				<MiniCardText
@@ -78,7 +79,7 @@ const Contacts: FC<DataProps> = () => {
 	return (
 		<Wrapper maxWidth="343px">
 			{data.map((item, index) => (
-				<Card item={item} index={index} key={item.text1 + index} />
+				<Card item={item} index={index} key={item.id} />
 			))}
 		</Wrapper>
 	);

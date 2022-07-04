@@ -13,14 +13,17 @@ import { Wrapper, TitleWrapper, Title } from "../../../custom/defaultStyles";
 
 const data: TextProps[] = [
 	{
+		id: 1,
 		text1: "24.01.2021",
 		text2: "Вы пропустили тренировку, не забудьте посетить ее завтра",
 	},
 	{
+		id: 2,
 		text1: "24.01.2021",
 		text2: "Вы пропустили тренировку, не забудьте посетить ее завтра",
 	},
 	{
+		id: 3,
 		text1: "24.01.2021",
 		text2: "Вы пропустили тренировку, не забудьте посетить ее завтра",
 	},
@@ -37,7 +40,6 @@ const Card = ({ item, index }: CardProps) => {
 			padding={"8px 10px"}
 			alignItems={"center"}
 			margin={"0 0 14px 0"}
-			key={index}
 		>
 			<MiniCardImage
 				width={"71px"}
@@ -105,7 +107,7 @@ const News: FC<DataProps> = () => {
 				/>
 			</TitleWrapper>
 			{data.map((item, index) => (
-				<Card item={item} index={index} key={item.text1 + index} />
+				<Card item={item} index={index} key={item.id} />
 			))}
 		</Wrapper>
 	);

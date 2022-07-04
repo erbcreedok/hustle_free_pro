@@ -17,6 +17,7 @@ const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
 const data: TextProps[] = [
 	{
+		id: 1,
 		text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)",
 		text2: "Дата проведения: 05 июня 2021",
 		text3: "Arcu hendrerit iaculis himenaeos senectus orci justo, tristique hac conubia erat libero. Ornare dapibus tellus finibus ullamcorper vehicula dis parturient, suscipit praesent aliquam lacinia donec condimentum luctus, imperdiet auctor facilisi enim odio risus. Facilisi auctor eu finibus at cubilia quis venenatis, sed dui sociosqu justo iaculis facilisis molestie vulputate, nullam inceptos elementum pretium amet tincidunt. Felis pellentesque fames venenatis accumsan ullamcorper potenti feugiat ornare aliquet, orci at tristique dolor ultricies maecenas vulputate rhoncus dui mattis, sodales molestie consequat finibus vehicula per montes vitae.",
@@ -87,7 +88,7 @@ const SingleCompetition: FC<DataProps> = () => {
 			<BackButton label={"Назад"} />
 			<Wrapper maxWidth="690px" marginBottom="70px">
 				{data.map((item, index) => (
-					<Card item={item} index={index} key={index} />
+					<Card item={item} index={index} key={item.id} />
 				))}
 			</Wrapper>
 		</>

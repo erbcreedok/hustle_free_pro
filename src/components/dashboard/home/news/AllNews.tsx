@@ -22,26 +22,32 @@ const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
 const data: TextProps[] = [
 	{
+		id: 1,
 		text1: "24.01.2021",
 		text2: "Клубные карты уже доступны в продаже, подробности...",
 	},
 	{
+		id: 2,
 		text1: "24.01.2021",
 		text2: "Клубные карты уже доступны в продаже, подробности...",
 	},
 	{
+		id: 3,
 		text1: "24.01.2021",
 		text2: "Клубные карты уже доступны в продаже, подробности...",
 	},
 	{
+		id: 4,
 		text1: "24.01.2021",
 		text2: "Клубные карты уже доступны в продаже, подробности...",
 	},
 	{
+		id: 5,
 		text1: "24.01.2021",
 		text2: "Клубные карты уже доступны в продаже, подробности...",
 	},
 	{
+		id: 6,
 		text1: "24.01.2021",
 		text2: "Клубные карты уже доступны в продаже, подробности...",
 	},
@@ -58,7 +64,6 @@ const MiniCard = ({ item, index }: CardProps) => {
 			padding={"8px 10px"}
 			alignItems={"center"}
 			margin={"0 0 14px 0"}
-			key={index}
 		>
 			<MiniCardImage
 				width={"71px"}
@@ -114,7 +119,6 @@ const MediumCard = ({ item, index }: CardProps) => {
 			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
 			borderRadius={"10px"}
 			padding={"12px"}
-			key={index}
 		>
 			<MediumCardImage border_radius={"10px"} />
 			<MediumCardTextWrapper>
@@ -179,7 +183,7 @@ const AllNews: FC<DataProps> = () => {
 			>
 				<Grid container item spacing={2} md={12} lg={11}>
 					{data.map((item, index) => (
-						<Fragment key={Date.now() + Math.random()}>
+						<Fragment key={item.id}>
 							<Grid
 								container
 								item

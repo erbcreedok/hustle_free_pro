@@ -21,24 +21,12 @@ import { Wrapper, TitleWrapper, Title } from "../../../custom/defaultStyles";
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
 const data: TextProps[] = [
-	{
-		text1: "Скидка 20% на продукты питания от Degreen.kz.",
-	},
-	{
-		text1: "Скидка 20% на продукты питания от Degreen.kz.",
-	},
-	{
-		text1: "Скидка 20% на продукты питания от Degreen.kz.",
-	},
-	{
-		text1: "Скидка 20% на продукты питания от Degreen.kz.",
-	},
-	{
-		text1: "Скидка 20% на продукты питания от Degreen.kz.",
-	},
-	{
-		text1: "Скидка 20% на продукты питания от Degreen.kz.",
-	},
+	{ id: 1, text1: "Скидка 20% на продукты питания от Degreen.kz." },
+	{ id: 2, text1: "Скидка 20% на продукты питания от Degreen.kz." },
+	{ id: 3, text1: "Скидка 20% на продукты питания от Degreen.kz." },
+	{ id: 4, text1: "Скидка 20% на продукты питания от Degreen.kz." },
+	{ id: 5, text1: "Скидка 20% на продукты питания от Degreen.kz." },
+	{ id: 6, text1: "Скидка 20% на продукты питания от Degreen.kz." },
 ];
 
 const MiniCard = ({ item, index }: CardProps) => {
@@ -52,7 +40,6 @@ const MiniCard = ({ item, index }: CardProps) => {
 			padding={"8px 10px"}
 			alignItems={"center"}
 			margin={"0 0 14px 0"}
-			key={index}
 		>
 			<MiniCardImage
 				width={"71px"}
@@ -98,7 +85,6 @@ const MeduimCard = ({ item, index }: CardProps) => {
 			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
 			borderRadius={"10px"}
 			padding={"12px"}
-			key={index}
 		>
 			<MediumCardImage border_radius={"10px"} />
 			<MediumCardTextWrapper>
@@ -160,7 +146,7 @@ const AllPartners: FC<DataProps> = () => {
 					lg={11}
 				>
 					{data.map((item, index) => (
-						<Fragment key={Date.now() + Math.random()}>
+						<Fragment key={item.id}>
 							<Grid
 								container
 								item

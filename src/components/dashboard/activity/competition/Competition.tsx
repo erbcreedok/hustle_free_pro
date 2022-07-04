@@ -19,22 +19,10 @@ import { Wrapper, TitleWrapper, Title } from "../../../custom/defaultStyles";
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
 const data: TextProps[] = [
-	{
-		text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)",
-		text2: "05 июня",
-	},
-	{
-		text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)",
-		text2: "05 июня",
-	},
-	{
-		text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)",
-		text2: "05 июня",
-	},
-	{
-		text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)",
-		text2: "05 июня",
-	},
+	{ id: 1, text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)", text2: "05 июня" },
+	{ id: 2, text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)", text2: "05 июня" },
+	{ id: 3, text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)", text2: "05 июня" },
+	{ id: 4, text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)", text2: "05 июня" },
 ];
 
 const CardsWrapper = styled("div")`
@@ -57,7 +45,6 @@ const Card = ({ item, index }: CardProps) => {
 			borderRadius={"10px"}
 			padding={"10px"}
 			margin={"0 20px 0 0"}
-			key={index}
 		>
 			<MediumCardImage border_radius={"10px"} />
 			<MediumCardTextWrapper>
@@ -107,7 +94,7 @@ const ScrollCards: FC<DataProps> = () => {
 			]}
 		>
 			{data.map((item, index) => (
-				<Card item={item} index={index} key={item.text1 + index} />
+				<Card item={item} index={index} />
 			))}
 		</CardsWrapper>
 	);
@@ -144,7 +131,7 @@ const Competition: FC<DataProps> = () => {
 				<Grid container columns={12}>
 					<Grid container item spacing={2} xs={11.5}>
 						{data.map((item, index) => (
-							<Grid item sm={6} md={6} lg={3} key={index}>
+							<Grid item sm={6} md={6} lg={3} key={item.id}>
 								{<Card item={item} index={index} />}
 							</Grid>
 						))}

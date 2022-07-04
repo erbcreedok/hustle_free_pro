@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import { Grid } from "@mui/material";
 import useBreakpoint from "use-breakpoint";
 import {
@@ -14,30 +14,12 @@ import { Wrapper, TitleWrapper, Title } from "../../../custom/defaultStyles";
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
 const data: TextProps[] = [
-	{
-		text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)",
-		text2: "05 июня",
-	},
-	{
-		text1: "AIGA СРЕДИ МАСТЕРОВ (+20 ЛЕТ)",
-		text2: "06 июня",
-	},
-	{
-		text1: "AIGA СРЕДИ МАСТЕРОВ (+40 ЛЕТ)",
-		text2: "07 июня",
-	},
-	{
-		text1: "AIGA СРЕДИ МАСТЕРОВ (+50 ЛЕТ)",
-		text2: "08 июня",
-	},
-	{
-		text1: "AIGA СРЕДИ МАСТЕРОВ (+10 ЛЕТ)",
-		text2: "09 июня",
-	},
-	{
-		text1: "AIGA СРЕДИ МАСТЕРОВ (+25 ЛЕТ)",
-		text2: "10 июня",
-	},
+	{ id: 1, text1: "AIGA СРЕДИ МАСТЕРОВ (+30 ЛЕТ)", text2: "05 июня" },
+	{ id: 2, text1: "AIGA СРЕДИ МАСТЕРОВ (+20 ЛЕТ)", text2: "06 июня" },
+	{ id: 3, text1: "AIGA СРЕДИ МАСТЕРОВ (+40 ЛЕТ)", text2: "07 июня" },
+	{ id: 4, text1: "AIGA СРЕДИ МАСТЕРОВ (+50 ЛЕТ)", text2: "08 июня" },
+	{ id: 5, text1: "AIGA СРЕДИ МАСТЕРОВ (+10 ЛЕТ)", text2: "09 июня" },
+	{ id: 6, text1: "AIGA СРЕДИ МАСТЕРОВ (+25 ЛЕТ)", text2: "10 июня" },
 ];
 
 const Card = ({ item, index }: CardProps) => {
@@ -105,17 +87,11 @@ const AllCompetitions: FC<DataProps> = () => {
 			<Grid container columns={12}>
 				<Grid container item spacing={2} xs={12} md={9}>
 					{data.map((item, index) => (
-						<>
-							<Grid item xs={6} lg={4} key={item.text1 + index}>
-								{
-									<Card
-										item={item}
-										index={index}
-										key={item.text1 + index + index}
-									/>
-								}
+						<Fragment key={item.id}>
+							<Grid item xs={6} lg={4}>
+								{<Card item={item} index={index} />}
 							</Grid>
-						</>
+						</Fragment>
 					))}
 				</Grid>
 			</Grid>

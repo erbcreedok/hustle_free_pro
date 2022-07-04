@@ -5,18 +5,9 @@ import UserCardImage from "../../../../utils/images/GreetingCard/user_card_image
 import { TextProps, DataProps } from "../../../../types/types";
 
 const data: TextProps[] = [
-	{
-		text1: "Безлимит",
-		text2: "Абонемент",
-	},
-	{
-		text1: "105",
-		text2: "Рейтинг",
-	},
-	{
-		text1: "21.12.2021",
-		text2: "Действителен до",
-	},
+	{ id: 1, text1: "Безлимит", text2: "Абонемент" },
+	{ id: 2, text1: "105", text2: "Рейтинг" },
+	{ id: 3, text1: "21.12.2021", text2: "Действителен до" },
 ];
 
 const Wrapper = styled(Box)`
@@ -106,7 +97,7 @@ const UserGreetingsCard: FC<DataProps> = () => {
 
 			<GreetingInfoWrapper>
 				{data.map((item) => (
-					<GreetingInfo key={item.text1}>
+					<GreetingInfo key={item.id}>
 						<GreetingInfoText
 							fontWeight={700}
 							fontSize={"18px"}

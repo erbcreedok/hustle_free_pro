@@ -2,7 +2,8 @@ import { ReactElement } from "react";
 
 // Types for Competition, Partners, News, notification, userInfo( Contacts, UserGreetings),
 export type TextProps = {
-	text1: string;
+	id: number;
+	text1?: string;
 	text2?: string;
 	text3?: string; // single
 	link?: string;
@@ -22,13 +23,15 @@ export type ContactsItem = {
 }[];
 
 export type ContactsTextProps = {
-	title: string;
+	id: number;
+	title?: string;
 	text?: string;
 	icons?: ContactsItem;
 };
 
 // Workout Payment
 export type PaymentTextProps = {
+	id: number;
 	title: string;
 	definition: string;
 };

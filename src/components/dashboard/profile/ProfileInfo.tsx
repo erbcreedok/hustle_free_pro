@@ -7,38 +7,14 @@ import { TextProps, ProfileInfoData } from "../../../types/types";
 import { Wrapper, TextWrapper, Text } from "../../custom/defaultStyles";
 
 const data: TextProps[] = [
-	{
-		text1: "Имя",
-		text2: "Maxim Tsinovkin",
-	},
-	{
-		text1: "Вы с нами с",
-		text2: "21.02.2021",
-	},
-	{
-		text1: "Логин",
-		text2: "12456",
-	},
-	{
-		text1: "Договор",
-		text2: "Подписан (Скачать)",
-	},
-	{
-		text1: "Пояс",
-		text2: "Красный",
-	},
-	{
-		text1: "Дата рождения",
-		text2: "21.07.1993",
-	},
-	{
-		text1: "Электронный адрес",
-		text2: "tsinovkin@mail.ru",
-	},
-	{
-		text1: "Телефон",
-		text2: "+7 (777) 777-77-77",
-	},
+	{ id: 1, text1: "Имя", text2: "Maxim Tsinovkin" },
+	{ id: 2, text1: "Вы с нами с", text2: "21.02.2021" },
+	{ id: 3, text1: "Логин", text2: "12456" },
+	{ id: 4, text1: "Договор", text2: "Подписан (Скачать)" },
+	{ id: 5, text1: "Пояс", text2: "Красный" },
+	{ id: 6, text1: "Дата рождения", text2: "21.07.1993" },
+	{ id: 7, text1: "Электронный адрес", text2: "tsinovkin@mail.ru" },
+	{ id: 8, text1: "Телефон", text2: "+7 (777) 777-77-77" },
 ];
 
 const ProfileImage = styled("img")`
@@ -79,7 +55,7 @@ const ProfileInfo: FC<ProfileInfoData> = () => {
 						justifyContent="space-between"
 						marginBottom="12px"
 						padding={0}
-						key={index + item.text1}
+						key={item.id}
 					>
 						<Text
 							fontWeight={400}

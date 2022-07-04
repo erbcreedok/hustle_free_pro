@@ -29,67 +29,39 @@ type IFormInputs = {
 	password: string;
 };
 
-type NewsTextProp = {
+type TextProps = {
+	id: number;
 	title: string;
 	value: string;
 	form_name: keyof IFormInputs;
 };
-const userData: NewsTextProp[] = [
+const userData: TextProps[] = [
+	{ id: 1, title: "Логин", value: "12345", form_name: "login" },
+	{ id: 2, title: "Имя", value: "Tsinovkin", form_name: "name" },
+	{ id: 3, title: "Фамилия", value: "Tsinovkin", form_name: "surname" },
+	{ id: 4, title: "Отчество", value: "asd", form_name: "patronymic" },
+	{ id: 5, title: "Вы с нами с", value: "21.02.2021", form_name: "with_us" },
+	{ id: 6, title: "Договор", value: "Попдисан", form_name: "treaty" },
+	{ id: 7, title: "Пояс", value: "Красный", form_name: "belt" },
 	{
-		title: "Логин",
-		value: "12345",
-		form_name: "login",
-	},
-	{
-		title: "Имя",
-		value: "Tsinovkin",
-		form_name: "name",
-	},
-	{
-		title: "Фамилия",
-		value: "Tsinovkin",
-		form_name: "surname",
-	},
-	{
-		title: "Отчество",
-		value: "asd",
-		form_name: "patronymic",
-	},
-	{
-		title: "Вы с нами с",
-		value: "21.02.2021",
-		form_name: "with_us",
-	},
-	{
-		title: "Договор",
-		value: "Попдисан",
-		form_name: "treaty",
-	},
-	{
-		title: "Пояс",
-		value: "Красный",
-		form_name: "belt",
-	},
-	{
+		id: 8,
 		title: "Дата рождения",
 		value: "21.07.1993",
 		form_name: "birthday",
 	},
 	{
+		id: 9,
 		title: "Электронный адрес",
 		value: "tsinovkin@mail.ru",
 		form_name: "email",
 	},
 	{
+		id: 10,
 		title: "Телефон",
 		value: "+7 (777) 777-77-77",
 		form_name: "phone_number",
 	},
-	{
-		title: "Пароль",
-		value: "",
-		form_name: "password",
-	},
+	{ id: 11, title: "Пароль", value: "", form_name: "password" },
 ];
 
 const UserImage = styled("img")`
@@ -129,7 +101,6 @@ const EditProfile = () => {
 		imageList: ImageListType,
 		addUpdateIndex: number[] | undefined
 	) => {
-		console.log(imageList, addUpdateIndex);
 		setImages(imageList as never[]);
 	};
 
@@ -202,7 +173,7 @@ const EditProfile = () => {
 				</div>
 				<Grid container spacing={2} rowSpacing={3} columns={12}>
 					{userData.map((item, index) => (
-						<Grid item xs={12} sm={6} key={item.title}>
+						<Grid item xs={12} sm={6} key={item.id}>
 							<InputLabel
 								sx={{
 									fontFamily: "Raleway",
@@ -214,7 +185,6 @@ const EditProfile = () => {
 								{item.title}
 							</InputLabel>
 							<Controller
-								key={item.form_name}
 								name={item.form_name}
 								control={control}
 								rules={{ required: true }}

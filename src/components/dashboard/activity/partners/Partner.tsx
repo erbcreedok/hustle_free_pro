@@ -16,18 +16,10 @@ import useBreakpoint from "use-breakpoint";
 const BREAKPOINTS = { xs: 0, sm: 768, mid: 900, lg: 1200 };
 
 const data: TextProps[] = [
-	{
-		text1: "Скидка 20% на продукты питания от Degreen.kz.",
-	},
-	{
-		text1: "Скидка 20% на продукты питания от Degreen.kz.",
-	},
-	{
-		text1: "Скидка 20% на продукты питания от Degreen.kz.",
-	},
-	{
-		text1: "Скидка 20% на продукты питания от Degreen.kz.",
-	},
+	{ id: 1, text1: "Скидка 20% на продукты питания от Degreen.kz." },
+	{ id: 2, text1: "Скидка 20% на продукты питания от Degreen.kz." },
+	{ id: 3, text1: "Скидка 20% на продукты питания от Degreen.kz." },
+	{ id: 4, text1: "Скидка 20% на продукты питания от Degreen.kz." },
 ];
 
 const Card = ({ item, index }: CardProps) => {
@@ -42,7 +34,6 @@ const Card = ({ item, index }: CardProps) => {
 			padding={"8px 10px"}
 			alignItems={"center"}
 			margin={"0 0 14px 0"}
-			key={index}
 		>
 			<MiniCardImage
 				width={"71px"}
@@ -113,7 +104,7 @@ const Partners: FC<DataProps> = () => {
 						xs={12}
 						md={12}
 						lg={6}
-						key={index + item.text1}
+						key={item.id}
 						sx={[
 							breakpoint === "xs" && {
 								justifyContent: "center",

@@ -10,30 +10,12 @@ import { FC } from "react";
 import { TextProps, CardProps, DataProps } from "../../../types/types";
 
 const data: TextProps[] = [
-	{
-		text1: "Кимоно для тхэквондо",
-		text2: "54500",
-	},
-	{
-		text1: "Кимоно для тхэквондо",
-		text2: "54500",
-	},
-	{
-		text1: "Кимоно для тхэквондо",
-		text2: "54500",
-	},
-	{
-		text1: "Кимоно для тхэквондо",
-		text2: "54500",
-	},
-	{
-		text1: "Кимоно для тхэквондо",
-		text2: "54500",
-	},
-	{
-		text1: "Кимоно для тхэквондо",
-		text2: "54500",
-	},
+	{ id: 1, text1: "Кимоно для тхэквондо", text2: "54500" },
+	{ id: 2, text1: "Кимоно для тхэквондо", text2: "54500" },
+	{ id: 3, text1: "Кимоно для тхэквондо", text2: "54500" },
+	{ id: 4, text1: "Кимоно для тхэквондо", text2: "54500" },
+	{ id: 5, text1: "Кимоно для тхэквондо", text2: "54500" },
+	{ id: 6, text1: "Кимоно для тхэквондо", text2: "54500" },
 ];
 
 const Card = ({ item, index }: CardProps) => {
@@ -47,7 +29,6 @@ const Card = ({ item, index }: CardProps) => {
 			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
 			borderRadius={"10px"}
 			padding={"16px"}
-			key={index}
 		>
 			<MediumCardImage height={"180px"} />
 			<MediumCardTextWrapper>
@@ -80,7 +61,7 @@ const Products: FC<DataProps> = () => {
 	return (
 		<Grid container spacing={2} columns={12}>
 			{data.map((item, index) => (
-				<Grid item xs={6} sm={6} md={4} lg={4} key={index}>
+				<Grid item xs={6} sm={6} md={4} lg={4} key={item.id}>
 					{<Card item={item} index={index} />}
 				</Grid>
 			))}

@@ -181,6 +181,7 @@ export const muiSelectDefaultStyles = () => ({
 	},
 	"&.MuiFormControl-root .MuiInput-root .MuiSvgIcon-root": {
 		color: " #272727",
+		right: "-5px",
 	},
 });
 

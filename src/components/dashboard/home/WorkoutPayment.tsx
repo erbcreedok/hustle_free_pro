@@ -3,6 +3,9 @@ import { styled } from "@mui/material/styles";
 import { BackButton } from "../../custom/BackButton";
 import { PaymentTextProps, PaymentDataProps } from "../../../types/types";
 import { Wrapper, Title } from "../../custom/defaultStyles";
+import useBreakpoint from "use-breakpoint";
+
+const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
 const paymentData: PaymentTextProps[] = [
 	{
@@ -46,6 +49,8 @@ const OL = styled("ol")`
 `;
 
 const WorkoutPayment: FC<PaymentDataProps> = () => {
+	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
+
 	return (
 		<>
 			<BackButton label={"Назад"} />
@@ -56,6 +61,7 @@ const WorkoutPayment: FC<PaymentDataProps> = () => {
 				boxShadow="0px 0px 30px rgba(0, 0, 0, 0.03)"
 				borderRadius="10px"
 				padding="16px 15.63px"
+				marginBottom={breakpoint === "mobile" ? "70px" : "34px"}
 			>
 				<Title
 					fontWeight={700}

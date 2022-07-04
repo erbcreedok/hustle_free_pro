@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/hustle_free_pro/static/css/main.408f173a.css",
-    "main.js": "/hustle_free_pro/static/js/main.774cf7db.js",
+    "main.js": "/hustle_free_pro/static/js/main.d4f0e0d8.js",
     "static/js/906.9e9eeb39.chunk.js": "/hustle_free_pro/static/js/906.9e9eeb39.chunk.js",
     "static/js/819.1782429f.chunk.js": "/hustle_free_pro/static/js/819.1782429f.chunk.js",
     "static/js/445.605e4e19.chunk.js": "/hustle_free_pro/static/js/445.605e4e19.chunk.js",
@@ -16,7 +16,7 @@
     "static/js/757.625fba61.chunk.js": "/hustle_free_pro/static/js/757.625fba61.chunk.js",
     "static/js/95.9d859565.chunk.js": "/hustle_free_pro/static/js/95.9d859565.chunk.js",
     "static/css/865.bc73dcea.chunk.css": "/hustle_free_pro/static/css/865.bc73dcea.chunk.css",
-    "static/js/865.71b27305.chunk.js": "/hustle_free_pro/static/js/865.71b27305.chunk.js",
+    "static/js/865.b704f700.chunk.js": "/hustle_free_pro/static/js/865.b704f700.chunk.js",
     "static/js/63.0fa62542.chunk.js": "/hustle_free_pro/static/js/63.0fa62542.chunk.js",
     "static/js/433.fff61cb6.chunk.js": "/hustle_free_pro/static/js/433.fff61cb6.chunk.js",
     "static/js/554.82ddc982.chunk.js": "/hustle_free_pro/static/js/554.82ddc982.chunk.js",
@@ -58,7 +58,7 @@
     "static/media/shop.svg": "/hustle_free_pro/static/media/shop.d7b7713765a9970a817d5ead6375eea4.svg",
     "static/media/logoutIcon.svg": "/hustle_free_pro/static/media/logoutIcon.d06e20caebe014ee5bd79d187948c7e2.svg",
     "main.408f173a.css.map": "/hustle_free_pro/static/css/main.408f173a.css.map",
-    "main.774cf7db.js.map": "/hustle_free_pro/static/js/main.774cf7db.js.map",
+    "main.d4f0e0d8.js.map": "/hustle_free_pro/static/js/main.d4f0e0d8.js.map",
     "906.9e9eeb39.chunk.js.map": "/hustle_free_pro/static/js/906.9e9eeb39.chunk.js.map",
     "819.1782429f.chunk.js.map": "/hustle_free_pro/static/js/819.1782429f.chunk.js.map",
     "445.605e4e19.chunk.js.map": "/hustle_free_pro/static/js/445.605e4e19.chunk.js.map",
@@ -73,7 +73,7 @@
     "757.625fba61.chunk.js.map": "/hustle_free_pro/static/js/757.625fba61.chunk.js.map",
     "95.9d859565.chunk.js.map": "/hustle_free_pro/static/js/95.9d859565.chunk.js.map",
     "865.bc73dcea.chunk.css.map": "/hustle_free_pro/static/css/865.bc73dcea.chunk.css.map",
-    "865.71b27305.chunk.js.map": "/hustle_free_pro/static/js/865.71b27305.chunk.js.map",
+    "865.b704f700.chunk.js.map": "/hustle_free_pro/static/js/865.b704f700.chunk.js.map",
     "63.0fa62542.chunk.js.map": "/hustle_free_pro/static/js/63.0fa62542.chunk.js.map",
     "433.fff61cb6.chunk.js.map": "/hustle_free_pro/static/js/433.fff61cb6.chunk.js.map",
     "554.82ddc982.chunk.js.map": "/hustle_free_pro/static/js/554.82ddc982.chunk.js.map",
@@ -99,6 +99,6 @@
   },
   "entrypoints": [
     "static/css/main.408f173a.css",
-    "static/js/main.774cf7db.js"
+    "static/js/main.d4f0e0d8.js"
   ]
 }

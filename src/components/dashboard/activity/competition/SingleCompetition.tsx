@@ -35,7 +35,6 @@ const Card = ({ item, index }: CardProps) => {
 			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
 			borderRadius={"10px"}
 			padding={breakpoint === "mobile" ? "12px" : "16px"}
-			key={index}
 		>
 			<LargeCardImage border_radius={"10px"} width={"100%"} />
 			<LargeCardTextWrapper>

@@ -32,7 +32,6 @@ const Card = ({ item, index }: CardProps) => {
 			boxShadow={"0px 0px 30px rgba(0, 0, 0, 0.03)"}
 			borderRadius={"10px"}
 			padding={"10px"}
-			key={index}
 		>
 			<MediumCardImage border_radius={"10px"} />
 			<MediumCardTextWrapper>

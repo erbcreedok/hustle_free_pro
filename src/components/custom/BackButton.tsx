@@ -7,6 +7,7 @@ const BackTextWrapper = styled("div")`
 		align-items: center;
 		cursor: pointer;
 	}
+	width: fit-content;
 	margin-bottom: 16px;
 `;
 const BackText = styled("span")`

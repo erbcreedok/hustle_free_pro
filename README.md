@@ -2,7 +2,7 @@
 
 Sign-in page: http://localhost:3000/hustle_free_pro/#/ or https://ula00001.github.io/hustle_free_pro/#/ \
 Privacy policy page: http://localhost:3000/hustle_free_pro/#/privacy or https://ula00001.github.io/hustle_free_pro/#/privacy \
-Home(dashboard) page: http://localhost:3000/hustle_free_pro/#/dashboard or https://ula00001.github.io/hustle_free_pro/#/dashboard \
+Home(dashboard) page: http://localhost:3000/hustle_free_pro/#/dashboard or https://ula00001.github.io/hustle_free_pro/#/dashboard
 
 # Getting Started with Create React App
 

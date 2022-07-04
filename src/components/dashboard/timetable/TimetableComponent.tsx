@@ -39,7 +39,7 @@ const CalendarHeader = styled("div")`
 	display: flex;
 	align-items: center;
 	padding-top: 10px;
-	position: fixed;
+	position: absolute;
 `;
 const CalendarBody = styled("div")`
 	display: flex;

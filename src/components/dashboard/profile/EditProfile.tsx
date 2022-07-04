@@ -11,7 +11,7 @@ import { getFieldState } from "../../../utils/getFieldState";
 import UserDefaultImage from "../../../utils/images/GreetingCard/profile_default_image.png";
 import {
 	CssProfileInput,
-	CssProfileFilledInput,
+	CssEditProfileFilledInput,
 	Wrapper,
 } from "../../custom/defaultStyles";
 
@@ -208,7 +208,7 @@ const EditProfile = () => {
 											id="component-simple"
 											sx={[
 												CssProfileInput,
-												CssProfileFilledInput,
+												CssEditProfileFilledInput,
 												{ width: "100%" },
 											]}
 											inputProps={{

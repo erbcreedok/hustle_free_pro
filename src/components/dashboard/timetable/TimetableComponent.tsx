@@ -6,7 +6,7 @@ import { useDraggable } from "react-use-draggable-scroll";
 import {
 	scrollStyles,
 	defaultSelectedDayStyle,
-	muiSelectDefaultStyles,
+	muiSelectDefaultStylesOfTimeTable,
 } from "../../../components/custom/defaultStyles";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import DatePicker from "react-datepicker";
@@ -195,7 +195,7 @@ const ScrollDay = () => {
 			]}
 		>
 			<CalendarHeader>
-				<FormControl sx={[muiSelectDefaultStyles]}>
+				<FormControl sx={[muiSelectDefaultStylesOfTimeTable]}>
 					<NativeSelect
 						value={selectedMonth}
 						onChange={(e) => handleChangeMonth(+e.target.value)}

@@ -111,7 +111,7 @@ export const CssProfileInput = () => ({
 		borderBottomColor: "#d8d2cf", // Solid underline on focus
 	},
 });
-export const CssProfileFilledInput = () => ({
+export const CssEditProfileFilledInput = () => ({
 	"& .MuiFilledInput-input": {
 		fontWeight: 700,
 		fontSize: "14px",
@@ -175,7 +175,7 @@ export const BottomNavDefaultStyles = () => ({
 	},
 });
 
-export const muiSelectDefaultStyles = () => ({
+export const muiSelectDefaultStylesOfTimeTable = () => ({
 	"&.MuiFormControl-root .MuiInput-root .MuiNativeSelect-select": {
 		paddingRight: " 16px !important",
 		fontWeight: "700",

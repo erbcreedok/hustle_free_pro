@@ -170,6 +170,9 @@ export const BottomNavDefaultStyles = () => ({
 	"& .MuiBottomNavigationAction-label.Mui-selected": {
 		color: "#6D4EEA",
 	},
+	"& .MuiButtonBase-root svg": {
+		marginRight: "0",
+	},
 });
 
 export const muiSelectDefaultStyles = () => ({

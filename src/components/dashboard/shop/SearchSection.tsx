@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+import { ChangeEventHandler, FC } from 'react'
 import { Title } from "../../custom/defaultStyles";
 
 const SearchInput = styled("input")`
@@ -16,14 +17,13 @@ const SearchInput = styled("input")`
 	}
 `;
 type Props = {
-	searchProduct: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	searchProduct: ChangeEventHandler<HTMLInputElement>;
+	dataLength: number;
 };
-const SearchSection = ({
+
+const SearchSection: FC<Props> = ({
 	searchProduct,
 	dataLength,
-}: {
-	searchProduct: any;
-	dataLength: number;
 }) => {
 	return (
 		<>

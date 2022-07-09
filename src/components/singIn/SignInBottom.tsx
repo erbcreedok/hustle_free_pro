@@ -6,7 +6,7 @@ import { Wrapper } from "../custom/defaultStyles";
 const SignInBottom = () => {
 	return (
 		<Wrapper maxWidth="343px" textAlign="center">
-			<Link to="signup">
+			<Link to="/signup">
 				<Typography
 					sx={[
 						SignInFormTextStyles,
@@ -22,7 +22,7 @@ const SignInBottom = () => {
 					Нет аккаунта? Зарегистрируйтесь
 				</Typography>
 			</Link>
-			<Link to="privacy">
+			<Link to="/privacy">
 				<Typography
 					sx={[
 						SignInFormTextStyles,

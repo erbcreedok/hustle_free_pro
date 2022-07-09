@@ -7,8 +7,11 @@ import {
 import { lazy, Suspense } from "react";
 import ProgressCircular from "./components/custom/ProgressCircular";
 import "./App.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase/firebase";
 
 const SignIn = lazy(() => import("./pages/SignIn"));
+const SignUp = lazy(() => import("./pages/SignUp"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 
@@ -51,14 +54,37 @@ const AddResult = lazy(
 );
 
 function App() {
+	const [user, loading] = useAuthState(auth);
 	return (
 		<Router basename="/">
 			<main>
 				<Suspense fallback={<ProgressCircular />}>
 					<Routes>
-						<Route path="/" element={<SignIn />} />
+						<Route
+							path="/"
+							element={
+								user ? (
+									<Navigate to="/dashboard" replace />
+								) : (
+									<SignIn />
+								)
+							}
+						/>
+						<Route
+							path="/signup"
+							element={
+								user ? (
+									<Navigate to="/dashboard" replace />
+								) : (
+									<SignUp />
+								)
+							}
+						/>
 						<Route path="/privacy" element={<PrivacyPolicy />} />
-						<Route path="/dashboard" element={<Dashboard />}>
+						<Route
+							path="/dashboard"
+							element={user ? <Dashboard /> : <SignIn />}
+						>
 							<Route path="home" element={<Home />} />
 							<Route path="home/news" element={<AllNews />} />
 							<Route

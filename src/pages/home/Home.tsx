@@ -19,9 +19,10 @@ const HomeIndex = () => {
 				<Grid
 					container
 					item
+					xs={12}
 					sm={12}
-					md={6}
-					lg={4}
+					md={6.5}
+					lg={4.2}
 					justifyContent="center"
 				>
 					<DashGreetingInfoSection>
@@ -34,9 +35,10 @@ const HomeIndex = () => {
 					container
 					spacing={2}
 					item
+					xs={12}
 					sm={12}
-					md={6}
-					lg={8}
+					md={5.5}
+					lg={7.8}
 					justifyContent="center"
 				>
 					<Grid

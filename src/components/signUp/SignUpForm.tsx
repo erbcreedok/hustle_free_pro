@@ -7,7 +7,6 @@ import {
 	InputAdornment,
 	TextField,
 } from "@mui/material";
-import { CustomCheckbox } from "../custom/Checkbox";
 import { getFieldState } from "../../utils/getFieldState";
 import { styled } from "@mui/material/styles";
 import Visibility from "@mui/icons-material/Visibility";
@@ -18,13 +17,13 @@ import {
 	CssSingInFormTextField,
 } from "../custom/defaultStyles";
 import {
-	logInWithEmailAndPassword,
-	auth,
+	registerWithEmailAndPassword,
 	signInWithGoogle,
+	auth,
 } from "../../firebase/firebase";
+import GoogleIcon from "@mui/icons-material/Google";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import GoogleIcon from "@mui/icons-material/Google";
 
 const SignInFormWrapper = styled("div")`
 	form {
@@ -40,46 +39,41 @@ const SignInFormWrapper = styled("div")`
 	button {
 		font-family: "Raleway";
 	}
-	.checkbox_text {
-		color: #bbbbbb;
-		font-weight: 400;
-		font-size: 12px;
-		margin-left: 16px;
-	}
-`;
-const CheckboxWrapper = styled("div")`
-	justify-content: flex-start;
-	padding: 14px 0;
 `;
 
 type IFormInputs = {
 	email: string;
 	password: string;
-	checkbox: boolean;
+	firstName?: string;
+	lastName?: string;
 };
 
-const SignInForm = () => {
+const SignUpForm = () => {
 	const [user, loading] = useAuthState(auth);
-
 	const navigate = useNavigate();
 	const [passwordShown, setPasswordShown] = useState(false);
 	const { control, handleSubmit, register } = useForm<IFormInputs>({
 		defaultValues: {
 			email: "",
 			password: "",
-			checkbox: false,
+			firstName: "",
+			lastName: "",
 		},
 	});
-	// useEffect(() => {
-	// 	if (user) navigate("/dashboard");
-	// }, [user]);
+
 	const togglePasswordVisiblity = useCallback(() => {
 		setPasswordShown(passwordShown ? false : true);
 	}, [passwordShown]);
 
+	// useEffect(() => {
+	// 	if (user) {
+	// 		navigate("/dashboard");
+	// 	}
+	// }, [user]);
+
 	const onSubmit: SubmitHandler<IFormInputs> = (data) => {
 		console.log(data);
-		logInWithEmailAndPassword(data);
+		registerWithEmailAndPassword(data);
 	};
 
 	return (
@@ -94,7 +88,7 @@ const SignInForm = () => {
 							<TextField
 								variant="standard"
 								id="component-simple"
-								label="Логин"
+								label="Email"
 								sx={[CssTextFieldLine, CssSingInFormTextField]}
 								inputProps={{
 									sx: {
@@ -110,6 +104,56 @@ const SignInForm = () => {
 						</FormControl>
 					)}
 				/>
+				<Controller
+					name="firstName"
+					control={control}
+					rules={{ required: true }}
+					render={({ field, fieldState, formState }) => (
+						<FormControl variant="standard">
+							<TextField
+								variant="standard"
+								id="component-simple"
+								label="Name"
+								sx={[CssTextFieldLine, CssSingInFormTextField]}
+								inputProps={{
+									sx: {
+										fontWeight: 700,
+										fontSize: "14px",
+										color: "#272727",
+									},
+								}}
+								{...getFieldState({ fieldState, formState })}
+								{...register("firstName")}
+								{...field}
+							/>
+						</FormControl>
+					)}
+				/>
+				<Controller
+					name="lastName"
+					control={control}
+					rules={{ required: true }}
+					render={({ field, fieldState, formState }) => (
+						<FormControl variant="standard">
+							<TextField
+								variant="standard"
+								id="component-simple"
+								label="lastName"
+								sx={[CssTextFieldLine, CssSingInFormTextField]}
+								inputProps={{
+									sx: {
+										fontWeight: 700,
+										fontSize: "14px",
+										color: "#272727",
+									},
+								}}
+								{...getFieldState({ fieldState, formState })}
+								{...register("lastName")}
+								{...field}
+							/>
+						</FormControl>
+					)}
+				/>
 
 				<Controller
 					name="password"
@@ -117,7 +161,7 @@ const SignInForm = () => {
 					render={({ field, fieldState, formState }) => (
 						<FormControl
 							variant="standard"
-							sx={{ marginTop: "18px" }}
+							sx={{ margin: "18px 0 14px" }}
 						>
 							<TextField
 								variant="standard"
@@ -164,28 +208,10 @@ const SignInForm = () => {
 						</FormControl>
 					)}
 				/>
-
-				<Controller
-					name="checkbox"
-					control={control}
-					render={({ field, fieldState, formState }) => (
-						<CheckboxWrapper>
-							<CustomCheckbox
-								checked={field.value}
-								onChange={field.onChange}
-								label={
-									<span className="checkbox_text">
-										Запомнить меня
-									</span>
-								}
-							/>
-						</CheckboxWrapper>
-					)}
-				/>
 				<CustomButton
 					width={"100%"}
 					height={"54px"}
-					text={"Войти"}
+					text={"Зарегистрироваться"}
 					backColor={
 						"linear-gradient(69.51deg, #3E83E1 0%, #7B3EED 100%)"
 					}
@@ -201,10 +227,10 @@ const SignInForm = () => {
 				size="large"
 				variant="outlined"
 			>
-				Войти с помощью Google
+				Регистрация с помощью Google
 			</Button>
 		</SignInFormWrapper>
 	);
 };
 
-export default SignInForm;
+export default SignUpForm;

@@ -15,11 +15,19 @@ const SearchInput = styled("input")`
 		outline: none;
 	}
 `;
-
-const SearchSection = () => {
+type Props = {
+	searchProduct: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+const SearchSection = ({
+	searchProduct,
+	dataLength,
+}: {
+	searchProduct: any;
+	dataLength: number;
+}) => {
 	return (
 		<>
-			<SearchInput />
+			<SearchInput onChange={searchProduct} />
 
 			<Title
 				fontWeight={400}
@@ -28,7 +36,7 @@ const SearchSection = () => {
 				color={"#272727;"}
 				margin={"34px 0"}
 			>
-				По вашему запросу найдено <b>10</b> товаров
+				По вашему запросу найдено <b>{dataLength}</b> товаров
 			</Title>
 		</>
 	);

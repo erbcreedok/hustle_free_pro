@@ -1,5 +1,5 @@
 import { useForm, Controller } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import { CustomCheckbox } from "../components/custom/Checkbox";
 import { CustomButton } from "../components/custom/Button";
@@ -8,6 +8,9 @@ import { PRIVACY_POLICY_TEXT } from "../components/privacyPolicy/privacyPolicyTe
 import TopBar from "../components/bar/TopBar";
 import { scrollStyles } from "../components/custom/defaultStyles";
 import useBreakpoint from "use-breakpoint";
+import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/firebase";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
@@ -79,14 +82,19 @@ type IFormInputs = {
 	checkbox: boolean;
 };
 const PrivacyPolicy = () => {
+	const [user, loading] = useAuthState(auth);
+	const navigate = useNavigate();
 	const [showMore, setShowMore] = useState(false);
 	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
-
 	const { control, handleSubmit, register } = useForm<IFormInputs>({
 		defaultValues: {
 			checkbox: false,
 		},
 	});
+
+	useEffect(() => {
+		if (user) navigate("/dashboard");
+	}, [user]);
 
 	breakpoint === "mobile"
 		? (document.body.style.backgroundColor = "#fff")

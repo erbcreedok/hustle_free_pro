@@ -38,4 +38,9 @@ export const MediumCardImage: FC<MediumCardImageProps> = ({
 export const MediumCardTextWrapper = styled(Box)``;
 
 // Top Text
-export const MediumCardText = styled(Typography)``;
+export const MediumCardText = styled(Typography)`
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+`;

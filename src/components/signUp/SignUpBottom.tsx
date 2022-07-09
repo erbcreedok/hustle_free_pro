@@ -3,10 +3,10 @@ import { Typography } from "@mui/material";
 import { SignInFormTextStyles } from "../custom/defaultStyles";
 import { Wrapper } from "../custom/defaultStyles";
 
-const SignInBottom = () => {
+const SignUpBottom = () => {
 	return (
 		<Wrapper maxWidth="343px" textAlign="center">
-			<Link to="signup">
+			<Link to="/">
 				<Typography
 					sx={[
 						SignInFormTextStyles,
@@ -19,23 +19,7 @@ const SignInBottom = () => {
 						},
 					]}
 				>
-					Нет аккаунта? Зарегистрируйтесь
-				</Typography>
-			</Link>
-			<Link to="privacy">
-				<Typography
-					sx={[
-						SignInFormTextStyles,
-						{
-							display: "block",
-							textAlign: "center",
-							textDecorationLine: "underline",
-							color: "#2f80ed",
-							margin: "24px 0",
-						},
-					]}
-				>
-					Политика конфеденциальности
+					Уже есть аккаунт? Войдите
 				</Typography>
 			</Link>
 			<Typography sx={[SignInFormTextStyles, { color: "#848484" }]}>
@@ -45,4 +29,4 @@ const SignInBottom = () => {
 	);
 };
 
-export default SignInBottom;
+export default SignUpBottom;

@@ -14,6 +14,9 @@ import { fetchData } from "../store/sidebarActions";
 import { SidebarTypes } from "../types/types";
 import { Dispatch } from "../store";
 import Breadcrumbs from "../components/custom/BreadcrumbsComponent";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 const BREAKPOINTS = { mobile: 0, tablet: 769, desktop: 1280 };
 
@@ -28,6 +31,10 @@ const DashContentSection = styled(Box)`
 `;
 
 const Dashboard = () => {
+	const [user, loading] = useAuthState(auth);
+	console.log(user);
+
+	const navigate = useNavigate();
 	const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
 	const dispatch: Dispatch = useDispatch();
 	const { request } = useHttp<SidebarTypes>();

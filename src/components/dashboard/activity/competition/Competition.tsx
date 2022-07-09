@@ -94,7 +94,7 @@ const ScrollCards: FC<DataProps> = () => {
 			]}
 		>
 			{data.map((item, index) => (
-				<Card item={item} index={index} />
+				<Card item={item} index={index} key={item.id} />
 			))}
 		</CardsWrapper>
 	);

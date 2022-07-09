@@ -9,15 +9,6 @@ import { Link } from "react-router-dom";
 import { FC } from "react";
 import { TextProps, CardProps, DataProps } from "../../../types/types";
 
-const data: TextProps[] = [
-	{ id: 1, text1: "Кимоно для тхэквондо", text2: "54500" },
-	{ id: 2, text1: "Кимоно для тхэквондо", text2: "54500" },
-	{ id: 3, text1: "Кимоно для тхэквондо", text2: "54500" },
-	{ id: 4, text1: "Кимоно для тхэквондо", text2: "54500" },
-	{ id: 5, text1: "Кимоно для тхэквондо", text2: "54500" },
-	{ id: 6, text1: "Кимоно для тхэквондо", text2: "54500" },
-];
-
 const Card = ({ item, index }: CardProps) => {
 	return (
 		<MediumCardWrapper
@@ -57,10 +48,10 @@ const Card = ({ item, index }: CardProps) => {
 	);
 };
 
-const Products: FC<DataProps> = () => {
+const Products: FC<DataProps> = ({ data }) => {
 	return (
 		<Grid container spacing={2} columns={12}>
-			{data.map((item, index) => (
+			{(data as TextProps[]).map((item, index) => (
 				<Grid item xs={6} sm={6} md={4} lg={4} key={item.id}>
 					{<Card item={item} index={index} />}
 				</Grid>

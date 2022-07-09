@@ -44,4 +44,8 @@ export const MiniCardText = styled(Typography)`
 	a:hover {
 		text-decoration: underline !important;
 	}
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 `;

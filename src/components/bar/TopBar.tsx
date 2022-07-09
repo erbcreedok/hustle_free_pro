@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import logOutIcon from "../../utils/images/icons/logoutIcon.svg";
 import Container from "@mui/material/Container";
+import { logOut } from "../../firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Icon = styled("img")`
 	margin-left: 11px;
@@ -14,7 +16,11 @@ const Icon = styled("img")`
 
 const TopBar = () => {
 	const { pathname } = useLocation();
-
+	const navigate = useNavigate();
+	const onLogOut = () => {
+		logOut();
+		navigate("/");
+	};
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar
@@ -22,7 +28,9 @@ const TopBar = () => {
 				sx={{
 					boxShadow: "none",
 					backgroundColor:
-						pathname === "/" || pathname === "/privacy"
+						pathname === "/" ||
+						pathname === "/privacy" ||
+						pathname === "/signup"
 							? "#f0f4f7"
 							: "#fff",
 				}}
@@ -46,13 +54,16 @@ const TopBar = () => {
 						>
 							Hustle Free Pro
 						</Typography>
-						{pathname === "/" || pathname === "/privacy" ? null : (
+						{pathname === "/" ||
+						pathname === "/privacy" ||
+						pathname === "/signup" ? null : (
 							<Button
 								color="inherit"
 								sx={{
 									color: "#848484",
 									textTransform: "capitalize",
 								}}
+								onClick={onLogOut}
 							>
 								Выход <Icon src={logOutIcon} />
 							</Button>

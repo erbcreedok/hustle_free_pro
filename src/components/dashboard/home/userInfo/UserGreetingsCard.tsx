@@ -3,6 +3,8 @@ import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import UserCardImage from "../../../../utils/images/GreetingCard/user_card_image.png";
 import { TextProps, DataProps } from "../../../../types/types";
+import { auth } from "../../../../firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const data: TextProps[] = [
 	{ id: 1, text1: "Безлимит", text2: "Абонемент" },
@@ -88,10 +90,11 @@ const GreetingInfoText = styled("span")<InfoTextProps>`
 `;
 
 const UserGreetingsCard: FC<DataProps> = () => {
+	const [user] = useAuthState(auth);
 	return (
 		<Wrapper>
 			<UserGreetingWrapper>
-				<GreetingTitle>Привет, Айгерим!</GreetingTitle>
+				<GreetingTitle>Привет, {user?.displayName ?? "User"}!</GreetingTitle>
 				<GreetingImage src={UserCardImage} />
 			</UserGreetingWrapper>
 
